@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tema } from '../services/tema';
 
 @Component({
   selector: 'app-pengaturan',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PengaturanPage implements OnInit {
 
-  constructor() { }
+  constructor(public tema: Tema) { }
 
   ngOnInit() {
   }
