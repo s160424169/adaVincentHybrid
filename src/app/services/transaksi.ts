@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Keranjang } from './keranjang';
 
 @Injectable({ providedIn: 'root' })
 export class Transaksi {
-  riwayat: Array<{
-    id: number;
-    tanggal: Date;
-    items: Keranjang['items'];
-    total: number;
-  }> = [];
+  riwayat: any[] = [];
   private urutan = 1;
 
-  konfirmasi(items: Keranjang['items'], total: number) {
+  konfirmasi(items: any[], total: number) {
     const trx = {
       id: this.urutan++,
       tanggal: new Date(),

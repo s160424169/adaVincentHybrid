@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Keranjang } from '../services/keranjang';
 import { Transaksi } from '../services/transaksi';
 
+interface ItemKeranjang {
+  produkId: number;
+  nama: string;
+  gambar: string;
+  hargaJual: number;
+  stok: number;
+  qty: number;
+}
+
 @Component({
   selector: 'app-keranjang',
   templateUrl: './keranjang.page.html',
@@ -9,28 +18,29 @@ import { Transaksi } from '../services/transaksi';
   standalone: false,
 })
 export class KeranjangPage implements OnInit {
-  bump: number | null = null;
+  bumpId: any = null;
 
   constructor(public keranjang: Keranjang, private transaksi: Transaksi) { }
 
   ngOnInit() {
   }
-  tambah(item: Keranjang['items'][number]) {
+
+  tambah(item: ItemKeranjang) {
     this.keranjang.tambahQty(item);
     this.mainkanBump(item.produkId);
   }
 
-  kurang(item: Keranjang['items'][number]) {
+  kurang(item: ItemKeranjang) {
     this.keranjang.kurangQty(item);
     this.mainkanBump(item.produkId);
   }
 
   mainkanBump(id: number) {
-    this.bump = id;
-    setTimeout(() => { this.bump = null; }, 200);
+    this.bumpId = id;
+    setTimeout(() => { this.bumpId = null; }, 200);
   }
 
-  hapus(item: Keranjang['items'][number], slidingItem: any) {
+  hapus(item: ItemKeranjang, slidingItem: any) {
     this.keranjang.hapus(item.produkId);
     slidingItem.close();
   }
