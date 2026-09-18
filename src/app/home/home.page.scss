@@ -25,3 +25,32 @@
 #container a {
   text-decoration: none;
 }
+
+// Variabel Warna Toko
+$warna-hijau-toko: #1e7e34;
+$warna-kuning-toko: #ffc107;
+
+// Styling Header Hijau dengan Garis Aksen Kuning
+.header-dashboard {
+  --background: #{$warna-hijau-toko};
+  --color: #ffffff;
+  font-weight: bold;
+
+  // Garis/Border Aksen Warna Kuning di Bawah Header
+  border-bottom: 4px solid $warna-kuning-toko;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  ion-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: $warna-kuning-toko; // Tulisan berwarna kuning padat
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Latar Belakang Content Dashboard
+.background-toko {
+  --background: #f4f7f5;
+}

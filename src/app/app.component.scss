@@ -1,0 +1,76 @@
+// Variabel Warna Utama Aplikasi
+$warna-hijau-toko: #1e7e34;
+$warna-kuning-toko: #ffc107;
+$warna-bg-drawer: #ffffff;
+$warna-teks: #2d3748;
+
+ion-menu {
+  // Mengatur warna border dan shadow drawer
+  --border: none;
+  --box-shadow: 4px 0 16px rgba(0, 0, 0, 0.08);
+
+  ion-content {
+    --background: #{$warna-bg-drawer};
+  }
+
+  // Header Drawer (Profil Toko)
+  .drawer-header {
+    background: linear-gradient(135deg, $warna-hijau-toko 0%, #145924 100%);
+    padding: 32px 20px 20px 20px;
+    color: #ffffff;
+    border-bottom-right-radius: 24px;
+
+    .avatar-toko {
+      width: 64px;
+      height: 64px;
+      border: 3px solid $warna-kuning-toko;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      margin-bottom: 12px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 4px 0 0 0;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  // Item List Menu Navigation
+  ion-list {
+    padding: 16px 12px;
+    background: transparent;
+
+    ion-item {
+      --background: transparent;
+      --color: #{$warna-teks};
+      --border-radius: 12px;
+      --padding-start: 16px;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s ease-in-out;
+
+      ion-icon {
+        color: #718096;
+        margin-right: 12px;
+      }
+
+      // Efek Hover & Status Aktif (Menu Ditekan)
+      &.selected, &:hover {
+        --background: #{rgba($warna-hijau-toko, 0.1)};
+        --color: #{$warna-hijau-toko};
+
+        ion-icon {
+          color: #{$warna-hijau-toko};
+        }
+      }
+    }
+  }
+}

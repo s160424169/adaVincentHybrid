@@ -1,0 +1,67 @@
+// Warna Identitas Toko (Hijau Utama & Kuning Aksen)
+$warna-hijau-toko: #1e7e34;
+$warna-kuning-toko: #ffc107;
+$warna-bg: #f4f7f5;
+
+.header-toko {
+  --background: #{$warna-hijau-toko};
+  --color: #ffffff;
+  font-weight: bold;
+}
+
+.background-toko {
+  --background: #{$warna-bg};
+}   
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.custom-input {
+  --background: #ffffff;
+  --border-radius: 12px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+
+  ion-label {
+    font-weight: 600;
+    color: #333333;
+    .wajib {
+      color: #dc3545;
+    }
+  }
+}
+
+// Efek garis merah jika input salah
+.input-error {
+  border: 2px solid #dc3545 !important;
+  background-color: #fff8f8;
+}
+
+.error-container {
+  padding: 6px 8px 0px 8px;
+  
+  .error-text {
+    margin: 0;
+    font-size: 13px;
+    color: #dc3545;
+    font-weight: 600;
+  }
+}
+
+// Tombol Hijau dengan Sentuhan Kuning
+.tombol-simpan {
+  --background: #{$warna-hijau-toko};
+  --background-hover: #165c26;
+  --color: #ffffff;
+  --border-radius: 12px;
+  font-weight: bold;
+  height: 48px;
+  box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3);
+  
+  // Garis aksen kuning di bawah tombol
+  border-bottom: 4px solid $warna-kuning-toko;
+}

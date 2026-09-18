@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Keranjang } from '../services/keranjang';
 import { Transaksi } from '../services/transaksi';
+import { Produk } from '../services/produk';
 
 interface ItemKeranjang {
   produkId: number;
@@ -20,9 +21,14 @@ interface ItemKeranjang {
 export class KeranjangPage implements OnInit {
   bumpId: any = null;
 
-  constructor(public keranjang: Keranjang, private transaksi: Transaksi) { }
+  constructor(public keranjang: Keranjang, private transaksi: Transaksi, private produk: Produk) { }
 
   ngOnInit() {
+    if (this.keranjang.items.length === 0) {
+      this.produk.items.forEach((item) => {
+        this.keranjang.tambahkan(item);
+      });
+    }
   }
 
   tambah(item: ItemKeranjang) {

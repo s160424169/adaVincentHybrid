@@ -2,31 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class Keranjang {
-  items = [
-    { 
-        produkId: 1,
-        nama: 'Indomie Goreng',
-        gambar: '',
-        hargaJual: 3500,
-        stok: 40, qty: 2 
-    },
-    { 
-        produkId: 2, 
-        nama: 'Beras Rojolele 5kg', 
-        gambar: '', 
-        hargaJual: 65000, 
-        stok: 5, 
-        qty: 1 
-    },
-    { 
-        produkId: 3, 
-        nama: 'Minyak Goreng 1L', 
-        gambar: '', 
-        hargaJual: 18000, 
-        stok: 2, 
-        qty: 1 
-    },
-  ];
+  items: any[] = []
 
   tambahkan(item: any) {
     const ada = this.items.find(i => i.produkId === item.produkId);
