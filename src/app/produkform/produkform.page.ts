@@ -10,25 +10,26 @@ import { ActivatedRoute, Router } from '@angular/router';
   standalone: false,
 })
 export class ProdukformPage implements OnInit {
-
-  produkForm!: FormGroup
-  edit: boolean = false
-  id: number = 0
+  produkForm!: FormGroup;
+  edit: boolean = false;
+  id: number = 0;
 
   constructor(private produkservice: Produk, private route: ActivatedRoute, private router: Router) { }
 
   isSalah(namaKolom: string): boolean {
-    const kolom = this.produkForm.get(namaKolom)
-    return !!(kolom && kolom.invalid && (kolom.touched || kolom.dirty || this.produkForm.touched))
+    const kolom = this.produkForm.get(namaKolom);
+    return !!(kolom && kolom.invalid && (kolom.touched || kolom.dirty || this.produkForm.touched));
   }
 
   inisiasiForm() {
     this.produkForm = new FormGroup({
       nama: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z\\s]+$')]),
+      hargaBeli: new FormControl(null, [Validators.required, Validators.min(1)]),
       hargaJual: new FormControl(null, [Validators.required, Validators.min(1)]),
       stok: new FormControl(null, [Validators.required, Validators.min(0)]),
-      kategori: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z\\s]+$')])
-    })
+      kategori: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z\\s]+$')]),
+      gambar: new FormControl("") // Tambahan form control untuk gambar (opsional)
+    });
   }
 
   isiFormUntukEdit(id: number) {
@@ -36,9 +37,11 @@ export class ProdukformPage implements OnInit {
     if (dataProduk) {
       this.produkForm.patchValue({
         nama: dataProduk.nama,
+        hargaBeli: dataProduk.hargaBeli,
         hargaJual: dataProduk.hargaJual,
         stok: dataProduk.stok,
-        kategori: dataProduk.kategori
+        kategori: dataProduk.kategori,
+        gambar: dataProduk.gambar // Mengisi input gambar saat edit
       });
     }
   }
@@ -51,28 +54,31 @@ export class ProdukformPage implements OnInit {
         this.produkservice.editProduk(
           this.id,
           val.nama,
+          Number(val.hargaBeli),
           Number(val.hargaJual),
           Number(val.stok),
-          val.kategori
+          val.kategori,
+          val.gambar // Kirim url gambar
         );
       } else {
         this.produkservice.tambahProduk(
           val.nama,
+          Number(val.hargaBeli),
           Number(val.hargaJual),
           Number(val.stok),
-          val.kategori
+          val.kategori,
+          val.gambar // Kirim url gambar
         );
       }
-      this.produkForm.reset()
+      this.produkForm.reset();
       this.router.navigate(['/produk']);
     } else {
-      this.produkForm.markAllAsTouched()
+      this.produkForm.markAllAsTouched();
     }
   }
 
   ngOnInit() {
-    this.inisiasiForm()
-
+    this.inisiasiForm();
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.id = Number(params['id']);

@@ -9,9 +9,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding background-toko">
-
   <form *ngIf="produkForm" [formGroup]="produkForm" (ngSubmit)="simpanProduk()">
 
+    <!-- NAMA PRODUK -->
     <div class="form-group">
       <ion-item class="custom-input" [class.input-error]="isSalah('nama')">
         <ion-label position="floating">
@@ -24,6 +24,37 @@
       </div>
     </div>
 
+    <!-- INPUT URL GAMBAR -->
+    <div class="form-group">
+      <ion-item class="custom-input">
+        <ion-label position="floating">URL Gambar Produk (Opsional)</ion-label>
+        <ion-input formControlName="gambar" type="text" placeholder="https://..."></ion-input>
+      </ion-item>
+    </div>
+
+    <!-- PREVIEW GAMBAR -->
+    <div style="text-align: center; margin: 16px 0 24px 0;">
+      <ion-label style="display: block; font-weight: bold; margin-bottom: 12px; color: #2d3748;">Preview
+        Gambar</ion-label>
+      <img [src]="produkForm.get('gambar')?.value ? produkForm.get('gambar')?.value : 'assets/no_image.png'"
+        style="width: 140px; height: 140px; object-fit: contain; border-radius: 16px; border: 2px dashed #cccccc; padding: 8px; background: #ffffff;"
+        alt="Preview Produk" />
+    </div>
+
+    <!-- HARGA BELI -->
+    <div class="form-group">
+      <ion-item class="custom-input" [class.input-error]="isSalah('hargaBeli')">
+        <ion-label position="floating">
+          Harga Beli (Rp) <span class="wajib">*</span>
+        </ion-label>
+        <ion-input formControlName="hargaBeli" type="number"></ion-input>
+      </ion-item>
+      <div class="error-container" *ngIf="isSalah('hargaBeli')">
+        <p class="error-text">Harga beli minimal Rp 1.</p>
+      </div>
+    </div>
+
+    <!-- HARGA JUAL -->
     <div class="form-group">
       <ion-item class="custom-input" [class.input-error]="isSalah('hargaJual')">
         <ion-label position="floating">
@@ -36,6 +67,7 @@
       </div>
     </div>
 
+    <!-- JUMLAH STOK -->
     <div class="form-group">
       <ion-item class="custom-input" [class.input-error]="isSalah('stok')">
         <ion-label position="floating">
@@ -48,6 +80,7 @@
       </div>
     </div>
 
+    <!-- KATEGORI -->
     <div class="form-group">
       <ion-item class="custom-input" [class.input-error]="isSalah('kategori')">
         <ion-label position="floating">
