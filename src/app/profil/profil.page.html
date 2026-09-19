@@ -1,13 +1,141 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profil</ion-title>
+  <ion-toolbar
+    style="
+      --background: green;
+      --color: white;
+      border-bottom: 4px solid gold;
+    "
+  >
+    <ion-buttons slot="start">
+      <ion-menu-button color="strong"></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title
+      style="
+        font-size: 19px;
+        font-weight: 700;
+        color: gold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      "
+    >
+      Profil
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content
+  style="color: #ffff;"
+>
+
+  <!-- Foto dan nama toko -->
+  <div
+    style="
+      background: green;
+      padding: 28px 20px;
+      text-align: center;
+    "
+  >
+    <img
+      src="https://www.bayarind.id/wp-content/uploads/2024/09/gambar-toko-kelontong-dari-depan.jpg"
+      alt="Logo Toko"
+      style="
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid gold;
+        display: block;
+        margin: 0 auto 12px auto;
+      "
+    />
+
+    <div
+      style="
+        font-size: 21px;
+        font-weight: 700;
+        color: #ffff;
+       
+      "
+    >
+      Toko Makmur Jaya
+    </div>
+
+    <div
+      style="
+        font-size: 14px;
+        font-weight: 600;
+        color: gold;
+        margin-top: 5px;
+      "
+    >
+      Administrator
+    </div>
+  </div>
+
+  <!-- Informasi toko -->
+  <div style="padding: 16px 0">
+
+    <div
+      style="
+        padding: 0 16px 10px 16px;
+        font-size: 18px;
+        font-weight: 700;
+     
+      "
+    >
+      Informasi Toko
+    </div>
+
+    <!-- Nama Toko -->
+    <ion-item>
+      <ion-icon
+        name="storefront-outline"
+        slot="start"
+       
+      ></ion-icon>
+
+      <ion-label>
+        <p>Nama Toko</p>
+        <strong>
+          Toko Makmur Jaya
+        </strong>
+      </ion-label>
+    </ion-item>
+
+    <!-- Pemilik -->
+    <ion-item>
+      <ion-icon
+        name="person-outline"
+        slot="start"
+    
+      ></ion-icon>
+
+      <ion-label>
+        <p>Pemilik</p>
+        <strong>
+          Bu Marni
+        </strong>
+      </ion-label>
+    </ion-item>
+
+    <!-- Status Akun -->
+    <ion-item lines="none">
+      <ion-icon
+        name="shield-checkmark-outline"
+        slot="start"
+       
+      ></ion-icon>
+
+      <ion-label>
+        <p>Status Akun</p>
+        <strong >
+          Aktif
+        </strong>
+      </ion-label>
+    </ion-item>
+
+  </div>
+
 </ion-content>

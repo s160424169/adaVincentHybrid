@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Tema } from './services/tema';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,7 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+
+  constructor(public tema: Tema) {}
+
 }

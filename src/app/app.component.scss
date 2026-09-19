@@ -13,6 +13,17 @@ ion-menu {
     --background: #{$warna-bg-drawer};
   }
 
+  &.ion-palette-dark {
+    ion-content {
+      --background: #121212;
+    }
+
+    ion-item {
+      --color: white;
+      --background: transparent;
+    }
+  }
+
   // Header Drawer (Profil Toko)
   .drawer-header {
     background: linear-gradient(135deg, $warna-hijau-toko 0%, #145924 100%);
@@ -63,7 +74,8 @@ ion-menu {
       }
 
       // Efek Hover & Status Aktif (Menu Ditekan)
-      &.selected, &:hover {
+      &.selected,
+      &:hover {
         --background: #{rgba($warna-hijau-toko, 0.1)};
         --color: #{$warna-hijau-toko};
 
@@ -71,6 +83,28 @@ ion-menu {
           color: #{$warna-hijau-toko};
         }
       }
+
+      html.ion-palette-dark ion-menu ion-content {
+        --background: #121212;
+      }
+
+      html.ion-palette-dark ion-menu ion-item {
+        --color: white;
+      }
+
     }
   }
+}
+
+// =========================
+// DARK MODE
+// =========================
+
+html.ion-palette-dark .drawer-toko {
+  --background: #121212 !important;
+}
+
+html.ion-palette-dark .drawer-toko ion-item {
+  --background: transparent !important;
+  --color: white !important;
 }
