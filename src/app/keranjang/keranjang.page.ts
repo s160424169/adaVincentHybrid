@@ -24,11 +24,11 @@ export class KeranjangPage implements OnInit {
   constructor(public keranjang: Keranjang, private transaksi: Transaksi, private produk: Produk) { }
 
   ngOnInit() {
-    if (this.keranjang.items.length === 0) {
-      this.produk.items.forEach((item) => {
-        this.keranjang.tambahkan(item);
-      });
-    }
+    // if (this.keranjang.items.length === 0) {
+    //   this.produk.items.forEach((item) => {
+    //     this.keranjang.tambahkan(item);
+    //   });
+    // }
   }
 
   tambah(item: ItemKeranjang) {

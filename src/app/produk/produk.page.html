@@ -7,37 +7,53 @@
   </ion-toolbar>
 
   <ion-toolbar class="toolbar-pencarian">
-    <ion-searchbar placeholder="Cari nama atau kategori..." class="custom-searchbar" animated="true">
+    <!-- Two-way binding ngModel untuk pencarian real-time -->
+    <ion-searchbar 
+      [(ngModel)]="kataKunciCari" 
+      placeholder="Cari nama atau kategori..." 
+      class="custom-searchbar" 
+      animated="true">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">produk</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div class="wadah-tombol ion-margin-top">
-    <ion-button type="submit" class="tombol-tambah" routerLink="/produkform">
+<ion-content [fullscreen]="true" class="background-toko ion-padding">
+  <div class="wadah-tombol">
+    <ion-button type="submit" class="tombol-tambah" routerLink="/produkform" expand="block">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Tambah Produk
     </ion-button>
   </div>
 
-  <ion-card *ngFor="let barang of items" class="card-produk">
-    <img alt="{{barang.nama}}" src="{{barang.gambar}}" />
+  <ion-card *ngFor="let barang of filteredItems" class="card-produk">
+    
+    <!-- Gambar default jika tidak ada gambar (Property Binding) -->
+    <img alt="{{barang.nama}}" [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'" />
+    
     <ion-card-header>
       <ion-card-title>{{barang.nama}}</ion-card-title>
-      <ion-card-subtitle>Rp. {{barang.hargaJual}}</ion-card-subtitle>
+      <ion-card-subtitle>Rp {{barang.hargaJual}}</ion-card-subtitle>
     </ion-card-header>
+    
     <ion-card-content>
-      Stok: {{barang.stok}}
+      <p>Stok: <strong>{{barang.stok}}</strong></p>
+      <p>Kategori: {{barang.kategori}}</p>
     </ion-card-content>
-    <ion-button type="button" class="tombol-edit" routerLink="/produkform/{{barang.produkId}}">
+    
+    <!-- Tombol keranjang ter-disable jika stok = 0 (Property Binding) -->
+    <ion-button 
+      expand="block" 
+      color="success" 
+      [disabled]="barang.stok === 0" 
+      (click)="tambahKeKeranjang(barang)"
+      class="ion-margin-horizontal ion-margin-bottom">
+      <ion-icon slot="start" name="cart-outline"></ion-icon>
+      Tambah ke Keranjang
+    </ion-button>
+
+    <ion-button type="button" fill="clear" class="tombol-edit ion-margin-horizontal" routerLink="/produkform/{{barang.produkId}}">
       <ion-icon slot="start" name="create-outline"></ion-icon>
-      Edit
+      Edit Produk
     </ion-button>
   </ion-card>
 </ion-content>

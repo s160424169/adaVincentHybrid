@@ -82,3 +82,40 @@ $warna-kuning-toko: #ffc107;
   height: 48px;
   box-shadow: 0 4px 12px rgba(255, 193, 7, 0.35);
 }
+
+// untuk layout kedua (lebih rapi)
+.card-produk {
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  margin: 0 auto 16px auto; // Membuat posisi card di tengah
+  max-width: 480px;         // Mencegah card melar di layar lebar/desktop
+  overflow: hidden;
+  background-color: #ffffff;
+
+  img {
+    width: 100%;
+    height: 200px;          // Tinggi proporsional untuk foto produk
+    object-fit: contain;    // Gambar tampil utuh tanpa terpotong/ter-zoom
+    padding: 12px;          // Memberi jarak manis di sekeliling gambar
+    background-color: #ffffff;
+  }
+
+  ion-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2d3748;
+  }
+
+  ion-card-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: $warna-hijau-toko;
+    margin-top: 4px;
+  }
+}
+
+// Samakan juga max-width tombol tambah produk agar sejajar dengan card
+.wadah-tombol {
+  max-width: 480px;
+  margin: 0 auto 16px auto;
+}
