@@ -11,6 +11,11 @@ import { Keranjang } from '../services/keranjang';
 export class ProdukPage implements OnInit {
   items: any[] = [];
   kataKunciCari: string = '';
+  kolom: number = 1;
+
+  setKolom(jumlah: number) {
+    this.kolom = jumlah;
+  }
 
   constructor(
     private produkservice: Produk,

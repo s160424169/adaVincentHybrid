@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="header-toko">
+  <ion-toolbar style="--background: green; --color: white; font-weight: bold;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/produk" color="light"></ion-back-button>
     </ion-buttons>
@@ -8,92 +8,92 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding background-toko">
+<ion-content [fullscreen]="true" class="ion-padding" style="--background: whitesmoke;">
   <form *ngIf="produkForm" [formGroup]="produkForm" (ngSubmit)="simpanProduk()">
 
     <!-- NAMA PRODUK -->
-    <div class="form-group">
-      <ion-item class="custom-input" [class.input-error]="isSalah('nama')">
-        <ion-label position="floating">
-          Nama Produk <span class="wajib">*</span>
+    <div style="margin-bottom: 16px;">
+      <ion-item [ngStyle]="{ '--background': 'white', '--border-radius': '12px', '--padding-start': '14px', '--padding-end': '14px', border: isSalah('nama') ? '2px solid crimson' : '2px solid lightgray', 'border-radius': '12px', 'background-color': isSalah('nama') ? 'snow' : 'white' }">
+        <ion-label position="floating" style="font-weight: 600; color: darkslategray;">
+          Nama Produk <span style="color: crimson;">*</span>
         </ion-label>
         <ion-input formControlName="nama" type="text"></ion-input>
       </ion-item>
-      <div class="error-container" *ngIf="isSalah('nama')">
-        <p class="error-text">Nama produk wajib diisi dan tidak boleh angka.</p>
+      <div *ngIf="isSalah('nama')" style="padding: 6px 8px 0 8px;">
+        <p style="margin: 0; font-size: 13px; color: crimson; font-weight: 600;">Nama produk wajib diisi dan tidak boleh angka.</p>
       </div>
     </div>
 
     <!-- INPUT URL GAMBAR -->
-    <div class="form-group">
-      <ion-item class="custom-input">
-        <ion-label position="floating">URL Gambar Produk (Opsional)</ion-label>
+    <div style="margin-bottom: 16px;">
+      <ion-item style="--background: white; --border-radius: 12px; --padding-start: 14px; --padding-end: 14px; border: 2px solid lightgray; border-radius: 12px;">
+        <ion-label position="floating" style="font-weight: 600; color: darkslategray;">URL Gambar Produk (Opsional)</ion-label>
         <ion-input formControlName="gambar" type="text" placeholder="https://..."></ion-input>
       </ion-item>
     </div>
 
     <!-- PREVIEW GAMBAR -->
     <div style="text-align: center; margin: 16px 0 24px 0;">
-      <ion-label style="display: block; font-weight: bold; margin-bottom: 12px; color: #2d3748;">Preview
+      <ion-label style="display: block; font-weight: bold; margin-bottom: 12px; color: darkslategray;">Preview
         Gambar</ion-label>
       <img [src]="produkForm.get('gambar')?.value ? produkForm.get('gambar')?.value : 'assets/no_image.png'"
-        style="width: 140px; height: 140px; object-fit: contain; border-radius: 16px; border: 2px dashed #cccccc; padding: 8px; background: #ffffff;"
+        style="width: 140px; height: 140px; object-fit: contain; border-radius: 16px; border: 2px dashed lightgray; padding: 8px; background: white;"
         alt="Preview Produk" />
     </div>
 
     <!-- HARGA BELI -->
-    <div class="form-group">
-      <ion-item class="custom-input" [class.input-error]="isSalah('hargaBeli')">
-        <ion-label position="floating">
-          Harga Beli (Rp) <span class="wajib">*</span>
+    <div style="margin-bottom: 16px;">
+      <ion-item [ngStyle]="{ '--background': 'white', '--border-radius': '12px', '--padding-start': '14px', '--padding-end': '14px', border: isSalah('hargaBeli') ? '2px solid crimson' : '2px solid lightgray', 'border-radius': '12px', 'background-color': isSalah('hargaBeli') ? 'snow' : 'white' }">
+        <ion-label position="floating" style="font-weight: 600; color: darkslategray;">
+          Harga Beli (Rp) <span style="color: crimson;">*</span>
         </ion-label>
         <ion-input formControlName="hargaBeli" type="number"></ion-input>
       </ion-item>
-      <div class="error-container" *ngIf="isSalah('hargaBeli')">
-        <p class="error-text">Harga beli minimal Rp 1.</p>
+      <div *ngIf="isSalah('hargaBeli')" style="padding: 6px 8px 0 8px;">
+        <p style="margin: 0; font-size: 13px; color: crimson; font-weight: 600;">Harga beli minimal Rp 1.</p>
       </div>
     </div>
 
     <!-- HARGA JUAL -->
-    <div class="form-group">
-      <ion-item class="custom-input" [class.input-error]="isSalah('hargaJual')">
-        <ion-label position="floating">
-          Harga Jual (Rp) <span class="wajib">*</span>
+    <div style="margin-bottom: 16px;">
+      <ion-item [ngStyle]="{ '--background': 'white', '--border-radius': '12px', '--padding-start': '14px', '--padding-end': '14px', border: isSalah('hargaJual') ? '2px solid crimson' : '2px solid lightgray', 'border-radius': '12px', 'background-color': isSalah('hargaJual') ? 'snow' : 'white' }">
+        <ion-label position="floating" style="font-weight: 600; color: darkslategray;">
+          Harga Jual (Rp) <span style="color: crimson;">*</span>
         </ion-label>
         <ion-input formControlName="hargaJual" type="number"></ion-input>
       </ion-item>
-      <div class="error-container" *ngIf="isSalah('hargaJual')">
-        <p class="error-text">Harga jual minimal Rp 1.</p>
+      <div *ngIf="isSalah('hargaJual')" style="padding: 6px 8px 0 8px;">
+        <p style="margin: 0; font-size: 13px; color: crimson; font-weight: 600;">Harga jual minimal Rp 1.</p>
       </div>
     </div>
 
     <!-- JUMLAH STOK -->
-    <div class="form-group">
-      <ion-item class="custom-input" [class.input-error]="isSalah('stok')">
-        <ion-label position="floating">
-          Jumlah Stok <span class="wajib">*</span>
+    <div style="margin-bottom: 16px;">
+      <ion-item [ngStyle]="{ '--background': 'white', '--border-radius': '12px', '--padding-start': '14px', '--padding-end': '14px', border: isSalah('stok') ? '2px solid crimson' : '2px solid lightgray', 'border-radius': '12px', 'background-color': isSalah('stok') ? 'snow' : 'white' }">
+        <ion-label position="floating" style="font-weight: 600; color: darkslategray;">
+          Jumlah Stok <span style="color: crimson;">*</span>
         </ion-label>
         <ion-input formControlName="stok" type="number"></ion-input>
       </ion-item>
-      <div class="error-container" *ngIf="isSalah('stok')">
-        <p class="error-text">Stok tidak boleh negatif.</p>
+      <div *ngIf="isSalah('stok')" style="padding: 6px 8px 0 8px;">
+        <p style="margin: 0; font-size: 13px; color: crimson; font-weight: 600;">Stok tidak boleh negatif.</p>
       </div>
     </div>
 
     <!-- KATEGORI -->
-    <div class="form-group">
-      <ion-item class="custom-input" [class.input-error]="isSalah('kategori')">
-        <ion-label position="floating">
-          Kategori <span class="wajib">*</span>
+    <div style="margin-bottom: 16px;">
+      <ion-item [ngStyle]="{ '--background': 'white', '--border-radius': '12px', '--padding-start': '14px', '--padding-end': '14px', border: isSalah('kategori') ? '2px solid crimson' : '2px solid lightgray', 'border-radius': '12px', 'background-color': isSalah('kategori') ? 'snow' : 'white' }">
+        <ion-label position="floating" style="font-weight: 600; color: darkslategray;">
+          Kategori <span style="color: crimson;">*</span>
         </ion-label>
         <ion-input formControlName="kategori" type="text"></ion-input>
       </ion-item>
-      <div class="error-container" *ngIf="isSalah('kategori')">
-        <p class="error-text">Kategori wajib diisi dan tidak boleh angka.</p>
+      <div *ngIf="isSalah('kategori')" style="padding: 6px 8px 0 8px;">
+        <p style="margin: 0; font-size: 13px; color: crimson; font-weight: 600;">Kategori wajib diisi dan tidak boleh angka.</p>
       </div>
     </div>
 
-    <ion-button expand="block" type="submit" class="tombol-simpan ion-margin-top">
+    <ion-button expand="block" type="submit" class="ion-margin-top" style="--background: green; --background-hover: darkgreen; --color: white; --border-radius: 12px; font-weight: bold; height: 48px; box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3); border-bottom: 4px solid gold;">
       <ion-text *ngIf="!edit">SIMPAN PRODUK</ion-text>
       <ion-text *ngIf="edit">EDIT PRODUK</ion-text>
     </ion-button>

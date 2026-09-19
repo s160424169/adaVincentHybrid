@@ -1,59 +1,175 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="header-dashboard">
+  <ion-toolbar style="--background: green; --color: white">
     <ion-buttons slot="start">
       <ion-menu-button color="strong"></ion-menu-button>
     </ion-buttons>
-    <ion-title>Produk</ion-title>
+    <ion-title
+      style="
+        font-size: 19px;
+        font-weight: 700;
+        color: gold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      "
+      >Produk</ion-title
+    >
   </ion-toolbar>
 
-  <ion-toolbar class="toolbar-pencarian">
+  <ion-toolbar
+    style="
+      --background: green;
+      border-bottom: 4px solid gold;
+      padding: 0 8px 6px 8px;
+    ">
     <!-- Two-way binding ngModel untuk pencarian real-time -->
-    <ion-searchbar 
-      [(ngModel)]="kataKunciCari" 
-      placeholder="Cari nama atau kategori..." 
-      class="custom-searchbar" 
+    <ion-searchbar
+      [(ngModel)]="kataKunciCari"
+      placeholder="Cari nama atau kategori..."
+      style="
+        --background: white;
+        --color: darkslategray;
+        --placeholder-color: slategray;
+        --icon-color: green;
+        --clear-button-color: slategray;
+        --border-radius: 12px;
+        --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        padding: 0;
+      "
       animated="true">
     </ion-searchbar>
+
+    <ion-buttons slot="end">
+      <ion-button
+        (click)="setKolom(1)"
+        [color]="kolom === 1 ? 'light' : 'medium'"
+      >
+        <ion-icon name="reorder-three-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button
+        (click)="setKolom(2)"
+        [color]="kolom === 2 ? 'light' : 'medium'"
+      >
+        <ion-icon name="grid-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button
+        (click)="setKolom(3)"
+        [color]="kolom === 3 ? 'light' : 'medium'"
+      >
+        <ion-icon name="apps-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="background-toko ion-padding">
-  <div class="wadah-tombol">
-    <ion-button type="submit" class="tombol-tambah" routerLink="/produkform" expand="block">
+<ion-content
+  [fullscreen]="true"
+  class="ion-padding"
+  style="--background: whitesmoke"
+>
+  <div style="max-width: 480px; margin: 0 auto 16px auto">
+    <ion-button
+      type="submit"
+      routerLink="/produkform"
+      expand="block"
+      style="
+        --background: green;
+        --background-hover: darkgreen;
+        --color: white;
+        --border-radius: 12px;
+        font-weight: bold;
+        height: 48px;
+        box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3);
+      "
+    >
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Tambah Produk
     </ion-button>
   </div>
 
-  <ion-card *ngFor="let barang of filteredItems" class="card-produk">
-    
+  <div [ngStyle]="{ display: 'grid', 'grid-template-columns': 'repeat(' + kolom + ', 1fr)', gap: '16px', 'align-items': 'start' }">
+  <ion-card
+    *ngFor="let barang of filteredItems"
+    [ngStyle]="{
+      width: kolom === 1 ? 'auto' : '100%',
+      margin: kolom === 1 ? '0 auto 16px auto' : '0 0 16px 0',
+      'max-width': kolom === 1 ? '480px' : 'none'
+    }"
+    style="
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      background-color: white;
+    "
+  >
     <!-- Gambar default jika tidak ada gambar (Property Binding) -->
-    <img alt="{{barang.nama}}" [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'" />
-    
+    <img
+      alt="{{barang.nama}}"
+      [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'"
+      style="
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        padding: 12px;
+        background-color: white;
+      "
+    />
+
     <ion-card-header>
-      <ion-card-title>{{barang.nama}}</ion-card-title>
-      <ion-card-subtitle>Rp {{barang.hargaJual}}</ion-card-subtitle>
+      <ion-card-title
+        style="font-size: 16px; font-weight: 700; color: darkslategray"
+        >{{barang.nama}}</ion-card-title
+      >
+      <ion-card-subtitle
+        style="font-size: 14px; font-weight: 700; color: green; margin-top: 4px"
+        >Rp {{barang.hargaJual}}</ion-card-subtitle
+      >
     </ion-card-header>
-    
+
     <ion-card-content>
       <p>Stok: <strong>{{barang.stok}}</strong></p>
       <p>Kategori: {{barang.kategori}}</p>
     </ion-card-content>
-    
+
     <!-- Tombol keranjang ter-disable jika stok = 0 (Property Binding) -->
-    <ion-button 
-      expand="block" 
-      color="success" 
-      [disabled]="barang.stok === 0" 
+    <ion-button
+      expand="block"
+      color="success"
+      [disabled]="barang.stok === 0"
       (click)="tambahKeKeranjang(barang)"
-      class="ion-margin-horizontal ion-margin-bottom">
+      class="ion-margin-horizontal ion-margin-bottom"
+      style="
+        --background: green;
+        --background-hover: darkgreen;
+        --color: white;
+        --border-radius: 12px;
+        font-weight: bold;
+        height: 48px;
+        box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3);
+      "
+    >
       <ion-icon slot="start" name="cart-outline"></ion-icon>
       Tambah ke Keranjang
     </ion-button>
 
-    <ion-button type="button" fill="clear" class="tombol-edit ion-margin-horizontal" routerLink="/produkform/{{barang.produkId}}">
+    <ion-button
+      type="button"
+      fill="clear"
+      class="ion-margin-horizontal"
+      routerLink="/produkform/{{barang.produkId}}"
+      style="
+        --background: gold;
+        --background-hover: darkgoldenrod;
+        --color: black;
+        --border-radius: 12px;
+        font-weight: bold;
+        height: 48px;
+        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.35);
+      "
+    >
       <ion-icon slot="start" name="create-outline"></ion-icon>
       Edit Produk
     </ion-button>
   </ion-card>
+  </div>
 </ion-content>
