@@ -13,7 +13,7 @@ export class Keranjang {
     if (ada) {
       ada.qty++;
     } else {
-      this.items.push({ ...item, qty: 1 });
+      this.items.push({ ...item, qty: 1,dipilih: true });
     }
   }
 
@@ -55,12 +55,16 @@ export class Keranjang {
   }
 
   get totalHarga(): number {
-    return this.items.reduce((total, i) => total + i.hargaJual * i.qty, 0);
-  }
+  return this.items.filter(i => i.dipilih).reduce((total, i) => total + i.hargaJual * i.qty, 0);
+}
 
-  get jumlahItem(): number {
-    return this.items.reduce((total, i) => total + i.qty, 0);
-  }
+get jumlahItem(): number {
+  return this.items.filter(i => i.dipilih).reduce((total, i) => total + i.qty, 0);
+}
+
+get jumlahDipilih(): number {
+  return this.items.filter(i => i.dipilih).length;
+}
 
   kosongkan() {
     // Kembalikan seluruh stok barang jika transaksi dibatalkan

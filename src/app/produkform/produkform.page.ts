@@ -23,11 +23,11 @@ export class ProdukformPage implements OnInit {
 
   inisiasiForm() {
     this.produkForm = new FormGroup({
-      nama: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z\\s]+$')]),
+      nama: new FormControl("", [Validators.required]),
       hargaBeli: new FormControl(null, [Validators.required, Validators.min(1)]),
       hargaJual: new FormControl(null, [Validators.required, Validators.min(1)]),
       stok: new FormControl(null, [Validators.required, Validators.min(0)]),
-      kategori: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z\\s]+$')]),
+      kategori: new FormControl("", [Validators.required]),
       gambar: new FormControl("") // Tambahan form control untuk gambar (opsional)
     });
   }

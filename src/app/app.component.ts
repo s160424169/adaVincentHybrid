@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Tema } from './services/tema';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,10 @@ import { Tema } from './services/tema';
 })
 export class AppComponent {
 
-  constructor(public tema: Tema) {}
+  constructor(public tema: Tema,private router: Router) {}
+
+  logout() {
+  this.router.navigate(['/dashboard']);
+  }
 
 }

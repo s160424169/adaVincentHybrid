@@ -12,18 +12,20 @@ export class ProdukPage implements OnInit {
   items: any[] = [];
   kataKunciCari: string = '';
   kolom: number = 1;
+  notifikasi: string = '';
+  tampilNotif: boolean = false;
 
-  setKolom(jumlah: number) {
-    this.kolom = jumlah;
-  }
-
+  
   constructor(
     private produkservice: Produk,
-    private keranjangService: Keranjang // Inject service keranjang
+    public keranjangService: Keranjang // Inject service keranjang
   ) { }
-
+  
   ngOnInit() {
     this.items = this.produkservice.items;
+  }
+  setKolom(jumlah: number) {
+    this.kolom = jumlah;
   }
 
   // Getter memfilter array secara otomatis (real-time filtering)
@@ -31,7 +33,7 @@ export class ProdukPage implements OnInit {
     if (!this.kataKunciCari) {
       return this.items;
     }
-    return this.items.filter(barang => 
+    return this.items.filter(barang =>
       barang.nama.toLowerCase().includes(this.kataKunciCari.toLowerCase()) ||
       barang.kategori.toLowerCase().includes(this.kataKunciCari.toLowerCase())
     );
@@ -39,8 +41,34 @@ export class ProdukPage implements OnInit {
 
   tambahKeKeranjang(barang: any) {
     if (barang.stok > 0) {
-      this.keranjangService.tambahkan(barang); // Lempar ke service keranjang
-      barang.stok -= 1; // Kurangi stok etalase agar langsung terlihat pembaruannya
+      this.keranjangService.tambahkan(barang);
+      barang.stok -= 1;
+      this.notifikasi = barang.nama + ' ditambahkan ke keranjang';
+      this.tampilNotif = true;
+      setTimeout(() => { this.tampilNotif = false; }, 1500);
     }
   }
+
+  jumlahDiKeranjang(barang: any): number {
+    const ada = this.keranjangService.items.find((i: any) => i.produkId === barang.produkId);
+    return ada ? ada.qty : 0;
+  }
+
+  tambahDariProduk(barang: any) {
+    const item = this.keranjangService.items.find((i: any) => i.produkId === barang.produkId);
+    if (item) this.keranjangService.tambahQty(item);
+  }
+
+  kurangDariProduk(barang: any) {
+    const item = this.keranjangService.items.find((i: any) => i.produkId === barang.produkId);
+    if (item) {
+      if (item.qty <= 1) {
+        this.keranjangService.hapus(item.produkId);
+      } else {
+        this.keranjangService.kurangQty(item);
+      }
+    }
+  }
+
+  
 }

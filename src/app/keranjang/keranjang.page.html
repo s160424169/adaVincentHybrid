@@ -1,9 +1,19 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--background: green; --color: white;">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button color="strong"></ion-menu-button>
+      <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
-    <ion-title style="font-size: 19px; font-weight: 700; color: gold; letter-spacing: 2px; text-transform: uppercase; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">Keranjang</ion-title>
+    <ion-title
+      style="
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--ion-color-secondary);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      "
+      >Keranjang</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
@@ -14,42 +24,75 @@
     </ion-toolbar>
   </ion-header>
 
-  <div *ngIf="keranjang.items.length === 0" style="text-align: center; margin-top: 80px; opacity: 0.6">
+  <div
+    *ngIf="keranjang.items.length === 0"
+    style="text-align: center; margin-top: 80px; opacity: 0.6"
+  >
     <ion-icon name="cart-outline" style="font-size: 64px"></ion-icon>
     <p>Keranjang masih kosong</p>
   </div>
   <ion-list *ngIf="keranjang.items.length > 0" style="background: transparent">
     <ion-item-sliding *ngFor="let item of keranjang.items" #slide>
-      <ion-item lines="none" style="
+      <ion-item
+        lines="none"
+        style="
           margin: 10px 12px;
           border-radius: 18px;
           background: rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
           border: 1px solid rgba(255, 255, 255, 0.15);
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); ">
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        "
+      >
+        <ion-checkbox
+          slot="start"
+          [(ngModel)]="item.dipilih"
+          style="margin-right: 8px"
+        ></ion-checkbox>
         <ion-thumbnail slot="start">
-          <img [src]="item.gambar || 'assets/no_image.png'" style="border-radius: 12px; object-fit: cover" />
+          <img
+            [src]="item.gambar || 'assets/no_image.png'"
+            style="border-radius: 12px; object-fit: cover"
+          />
         </ion-thumbnail>
 
         <ion-label>
           <h2>{{ item.nama }}</h2>
           <p>Rp {{ item.hargaJual }}</p>
-          <ion-chip *ngIf="item.stok <= 3" color="warning" style="height: 20px; font-size: 11px; margin-top: 4px">
+          <ion-chip
+            *ngIf="item.stok <= 3"
+            color="warning"
+            style="height: 20px; font-size: 11px; margin-top: 4px"
+          >
             Sisa stok {{ item.stok }}
           </ion-chip>
         </ion-label>
 
         <div slot="end" style="display: flex; align-items: center; gap: 6px">
+          <ion-button
+            size="small"
+            fill="clear"
+            color="danger"
+            (click)="hapus(item, slide)"
+          >
+            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+          </ion-button>
           <ion-button size="small" fill="clear" (click)="kurang(item)">
             <ion-icon name="remove-circle-outline"></ion-icon>
           </ion-button>
 
           <span
-            [ngStyle]="{ transform: bumpId === item.produkId ? 'scale(1.3)' : 'scale(1)', transition: 'transform 0.2s ease', display: 'inline-block', 'font-weight': '600' }">
+            [ngStyle]="{ transform: bumpId === item.produkId ? 'scale(1.3)' : 'scale(1)', transition: 'transform 0.2s ease', display: 'inline-block', 'font-weight': '600' }"
+          >
             {{ item.qty }}
           </span>
-          <ion-button size="small" fill="clear" (click)="tambah(item)" [disabled]="item.qty >= item.stok">
+          <ion-button
+            size="small"
+            fill="clear"
+            (click)="tambah(item)"
+            [disabled]="item.qty >= item.stok"
+          >
             <ion-icon name="add-circle-outline"></ion-icon>
           </ion-button>
         </div>
@@ -65,7 +108,8 @@
 </ion-content>
 
 <ion-footer *ngIf="keranjang.items.length > 0">
-  <div style="
+  <div
+    style="
       margin: 12px;
       padding: 16px 20px;
       border-radius: 20px;
@@ -76,9 +120,13 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
       display: flex;
       justify-content: space-between;
-      align-items: center;">
+      align-items: center;
+    "
+  >
     <div>
-      <p style="margin: 0; font-size: 12px; opacity: 0.7">Total Belanja</p>
+      <p style="margin: 0; font-size: 12px; opacity: 0.7">
+        Total Belanja ({{ keranjang.jumlahDipilih }} produk dipilih)
+      </p>
       <h2 style="margin: 0">Rp {{ keranjang.totalHarga }}</h2>
     </div>
     <ion-button (click)="konfirmasi()" shape="round">

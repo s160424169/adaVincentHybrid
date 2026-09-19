@@ -52,8 +52,9 @@ export class KeranjangPage implements OnInit {
   }
 
   konfirmasi() {
-    this.transaksi.konfirmasi(this.keranjang.items, this.keranjang.totalHarga);
-    this.keranjang.kosongkan();
-  }
+  const dipilih = this.keranjang.items.filter(i => i.dipilih);
+  this.transaksi.konfirmasi(dipilih, this.keranjang.totalHarga);
+  this.keranjang.items = this.keranjang.items.filter(i => !i.dipilih);
+}
 
 }
