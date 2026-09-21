@@ -136,7 +136,8 @@
       "
     >
       <!-- Gambar default jika tidak ada gambar (Property Binding) -->
-      <img
+      <ion-item routerLink="/produkdetail/{{barang.produkId}}">
+          <img
         alt="{{barang.nama}}"
         [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'"
         style="
@@ -146,7 +147,9 @@
           padding: 12px;
           background-color: white;
         "
-      />
+        />
+      </ion-item>
+  
 
       <ion-card-header>
         <ion-card-title

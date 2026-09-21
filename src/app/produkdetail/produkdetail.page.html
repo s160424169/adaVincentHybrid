@@ -2,6 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
+      <ion-back-button defaultHref="/produk" color="light"></ion-back-button>
     </ion-buttons>
     <ion-title color="secondary">Detail Produk</ion-title>
   </ion-toolbar>
@@ -13,4 +14,15 @@
       <ion-title size="large">Detail Produk</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-card>
+      <img alt="{{items[id-1].nama}}" src="{{items[id-1].gambar}}" />
+      <ion-card-header>
+        <ion-card-title>Rp. {{items[id-1].hargaJual}}</ion-card-title>
+        <ion-card-subtitle>Stok: {{items[id-1].stok}}</ion-card-subtitle>
+        <ion-card-subtitle>Kategori: {{items[id-1].kategori}}</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
 </ion-content>
