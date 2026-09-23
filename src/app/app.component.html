@@ -1,158 +1,61 @@
 <ion-app>
   <ion-menu contentId="main-content" type="overlay">
     <ion-content style="--background: whitesmoke">
-      <div
-        style="
-          background: var(--ion-color-primary);
-          color: white;
-          padding: 28px 20px 22px;
-          border-bottom-right-radius: 24px;
-        "
-      >
-        <ion-avatar
-          style="
-            width: 64px;
-            height: 64px;
-            border: 3px solid var(--ion-color-secondary);
-            margin-bottom: 12px;
-          "
-        >
-          <img
-            src="https://www.bayarind.id/wp-content/uploads/2024/09/gambar-toko-kelontong-dari-depan.jpg"
-            alt="Logo Toko"
-          />
+      <div class="menu-header">
+        <ion-avatar class="menu-avatar">
+          <img src="https://www.bayarind.id/wp-content/uploads/2024/09/gambar-toko-kelontong-dari-depan.jpg"
+            alt="Logo Toko" />
         </ion-avatar>
-        <h3 style="margin: 0; font-size: 18px; font-weight: 700">
+        <h3 class="menu-store-name">
           Toko Makmur Jaya
         </h3>
-        <p style="margin: 4px 0 0; font-size: 13px; opacity: 0.8">Menu List</p>
+        <p class="menu-subtitle">Menu List</p>
       </div>
 
-      <ion-list
-        lines="none"
-        style="padding: 16px 12px; background: transparent"
-      >
+      <ion-list lines="none" class="menu-list">
         <ion-menu-toggle auto-hide="false">
-          <ion-item
-            routerLink="/home"
-            routerDirection="root"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item routerLink="/home" routerDirection="root" class="menu-item">
             <ion-icon slot="start" name="home-outline"></ion-icon>
             <ion-label>Dashboard</ion-label>
           </ion-item>
 
-          <ion-item
-            routerLink="/produk"
-            routerDirection="root"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item routerLink="/produk" routerDirection="root" class="menu-item">
             <ion-icon slot="start" name="grid-outline"></ion-icon>
             <ion-label>Produk</ion-label>
           </ion-item>
 
-          <ion-item
-            routerLink="/keranjang"
-            routerDirection="root"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item routerLink="/keranjang" routerDirection="root" class="menu-item">
             <ion-icon slot="start" name="cart-outline"></ion-icon>
             <ion-label>Keranjang</ion-label>
           </ion-item>
 
-          <ion-item
-            routerLink="/transaksi"
-            routerDirection="root"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item routerLink="/transaksi" routerDirection="root" class="menu-item">
             <ion-icon slot="start" name="receipt-outline"></ion-icon>
             <ion-label>Transaksi</ion-label>
           </ion-item>
 
-          <ion-item
-            routerLink="/profil"
-            routerDirection="forward"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item routerLink="/profil" routerDirection="forward" class="menu-item">
             <ion-icon slot="start" name="person-outline"></ion-icon>
             <ion-label>Profile</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle auto-hide="true">
-          <ion-item
-            routerLink="/pengaturan"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item routerLink="/pengaturan" class="menu-item">
             <ion-icon name="settings-outline" slot="start"></ion-icon>
             <ion-label>Pengaturan</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle auto-hide="true">
-          <ion-item
-            routerLink="/tentang"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item routerLink="/tentang" class="menu-item">
             <ion-icon name="information-circle-outline" slot="start"></ion-icon>
             <ion-label>Tentang Aplikasi</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle auto-hide="true">
-          <ion-item
-            button
-            (click)="logout()"
-            style="
-              --background: transparent;
-              --border-radius: 12px;
-              --padding-start: 16px;
-              margin-bottom: 6px;
-              font-weight: 600;
-            "
-          >
+          <ion-item button (click)="logout()" class="menu-item">
             <ion-icon name="log-out-outline" slot="start"></ion-icon>
             <ion-label>Logout</ion-label>
           </ion-item>

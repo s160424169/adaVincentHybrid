@@ -17,7 +17,7 @@ export class Tema {
     },
     {
         nama: 'biru-klasik',
-        label: 'Biru Klasik',
+        label: 'Biru',
         primary: '#1565c0',
         shade: '#1259a9',
         tint: '#2c75c6',
@@ -29,7 +29,7 @@ export class Tema {
     },
     {
         nama: 'merah-cabai', 
-        label: 'Merah Cabai',
+        label: 'Merah',
         primary: '#c62828',
         shade: '#ad2222',
         tint: '#ca3d3d',
@@ -41,7 +41,7 @@ export class Tema {
     },
     {
         nama: 'ungu-senja', 
-        label: 'Ungu Senja', 
+        label: 'Ungu', 
         primary: '#6a1b9a',
         shade: '#5d1888',
         tint: '#762fa4',

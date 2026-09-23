@@ -10,65 +10,34 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar color="primary">
-      <ion-title size="large">pengaturan</ion-title>
+      <ion-title size="large">Pengaturan</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div
-    style="
-      border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 20px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    "
-  >
-    <h3 style="margin-top: 0">Tampilan Aplikasi</h3>
+  <div class="settings-card">
+    <h3 class="card-title">Tampilan Aplikasi</h3>
 
-    <ion-item lines="none" style="--background: transparent">
+    <ion-item lines="none" class="settings-item">
       <ion-icon name="moon-outline" slot="start"></ion-icon>
       <ion-label>Mode Gelap</ion-label>
-      <ion-toggle
-        [(ngModel)]="tema.modeGelap"
-        (ionChange)="tema.toggleGelap($event.detail.checked)"
-      ></ion-toggle>
+      <ion-toggle [(ngModel)]="tema.modeGelap" (ionChange)="tema.toggleGelap($event.detail.checked)"></ion-toggle>
     </ion-item>
   </div>
 
-  <div
-    style="
-      border-radius: 20px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    "
-  >
-    <h3 style="margin-top: 0">Warna Identitas Toko</h3>
-    <p style="opacity: 0.7; font-size: 13px">
+  <div class="settings-card-alt">
+    <h3 class="card-title">Warna Identitas Toko</h3>
+    <p class="section-desc">
       Pilih warna aksen sesuai identitas Toko Makmur Jaya
     </p>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px">
-      <ion-chip
-        *ngFor="let p of tema.daftarPalet"
-        (click)="tema.pilihPalet(p)"
-        [ngStyle]="{
+    <div class="palette-list">
+      <ion-chip *ngFor="let p of tema.daftarPalet" (click)="tema.pilihPalet(p)" [ngStyle]="{
                   background: p.primary,
                   color: p.contrast,
                   border: p.nama === tema.paletAktif ? '3px solid white' : '1px solid rgba(255,255,255,0.3)',
                   transform: p.nama === tema.paletAktif ? 'scale(1.08)' : 'scale(1)',
                   transition: 'all 0.2s ease'
-                }"
-      >
-        <ion-icon
-          *ngIf="p.nama === tema.paletAktif"
-          name="checkmark-outline"
-        ></ion-icon>
+                }">
+        <ion-icon *ngIf="p.nama === tema.paletAktif" name="checkmark-outline"></ion-icon>
         {{ p.label }}
       </ion-chip>
     </div>

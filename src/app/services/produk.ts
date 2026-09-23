@@ -15,7 +15,7 @@ export interface ProdukItem {
     providedIn: 'root'
 })
 export class Produk {
-    // Memenuhi syarat minimal 10 data dummy produk
+    gambarDefault: string = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShY6RQS0h1pKlDn9AIFSOFd4UdQIXlFksW6btQ9et8sw&s"
     items: ProdukItem[] = [
         {
             produkId: 1,
@@ -124,7 +124,7 @@ export class Produk {
         this.items.push({
             produkId: p_id,
             nama: p_nama,
-            gambar: p_gambar || '', // Simpan gambar jika ada
+            gambar: p_gambar || this.gambarDefault, // Simpan gambar jika ada
             hargaBeli: p_hargaBeli,
             hargaJual: p_hargaJual,
             stok: p_stok,

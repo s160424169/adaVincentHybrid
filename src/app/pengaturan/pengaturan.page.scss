@@ -1,0 +1,44 @@
+.settings-card {
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+ 
+.settings-card-alt {
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+ 
+.card-title {
+  margin-top: 0;
+}
+ 
+.settings-item {
+  --background: transparent;
+}
+ 
+.section-desc {
+  opacity: 0.7;
+  font-size: 13px;
+}
+ 
+.palette-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+ 
+.palette-chip {
+  transition: all 0.2s ease;
+}

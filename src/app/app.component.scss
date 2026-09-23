@@ -1,0 +1,42 @@
+.menu-content {
+  --background: whitesmoke;
+}
+ 
+.menu-header {
+  background: var(--ion-color-primary);
+  color: white;
+  padding: 28px 20px 22px;
+  border-bottom-right-radius: 24px;
+}
+ 
+.menu-avatar {
+  width: 64px;
+  height: 64px;
+  border: 3px solid var(--ion-color-secondary);
+  margin-bottom: 12px;
+}
+ 
+.menu-store-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+ 
+.menu-subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.8;
+}
+ 
+.menu-list {
+  padding: 16px 12px;
+  background: transparent;
+}
+ 
+.menu-item {
+  --background: transparent;
+  --border-radius: 12px;
+  --padding-start: 16px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}

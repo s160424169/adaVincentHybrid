@@ -1,0 +1,127 @@
+// =========================================
+// Style untuk halaman Produk
+// Dipindahkan dari inline style di produk.page.html
+// =========================================
+
+.page-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ion-color-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.search-toolbar {
+    border-bottom: 4px solid var(--ion-color-secondary);
+    padding: 0 8px 6px 8px;
+}
+
+.search-bar {
+    --border-radius: 12px;
+    --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    padding: 0;
+}
+
+.cart-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    display: block;
+    z-index: 10;
+}
+
+.notif-banner {
+    position: sticky;
+    top: 8px;
+    z-index: 20;
+    margin: 0 12px 12px 12px;
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.add-product-wrapper {
+    max-width: 480px;
+    margin: 0 auto 16px auto;
+}
+
+.add-product-btn {
+    --border-radius: 12px;
+    font-weight: bold;
+    height: 48px;
+    box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3);
+}
+
+.produk-grid {
+    display: grid;
+    gap: 16px;
+    align-items: start;
+}
+
+.produk-card {
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.produk-img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    padding: 12px;
+    background-color: white;
+}
+
+.produk-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: darkslategray;
+}
+
+.produk-subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ion-color-primary);
+    margin-top: 4px;
+}
+
+.add-cart-wrapper {
+    margin: 0 12px 12px 12px;
+}
+
+.add-cart-btn {
+    --border-radius: 12px;
+    font-weight: bold;
+    height: 48px;
+}
+
+.cart-qty-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 12px 12px 12px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 6px 12px;
+}
+
+.cart-qty-badge {
+    font-size: 14px;
+    padding: 6px 12px;
+}
+
+.edit-produk-btn {
+    --border-radius: 12px;
+    font-weight: bold;
+    height: 48px;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.35);
+}

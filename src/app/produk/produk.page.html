@@ -3,16 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
-    <ion-title
-      style="
-        font-size: 19px;
-        font-weight: 700;
-        color: var(--ion-color-secondary);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-      "
-      >Produk</ion-title
+    <ion-title class="page-title">Produk</ion-title
     >
     <ion-buttons slot="end">
       <ion-button routerLink="/keranjang" aria-label="Buka keranjang">
@@ -20,17 +11,7 @@
         <ion-badge
           *ngIf="keranjangService.jumlahItem > 0"
           color="danger"
-          style="
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 8px;
-            height: 8px;
-            padding: 0;
-            border-radius: 50%;
-            display: block;
-            z-index: 10;
-          "
+          class="cart-badge"
         ></ion-badge>
       </ion-button>
     </ion-buttons>
@@ -38,21 +19,14 @@
 
   <ion-toolbar
     color="primary"
-    style="
-      border-bottom: 4px solid var(--ion-color-secondary);
-      padding: 0 8px 6px 8px;
-    "
+    class="searh-toolbar"
   >
     <!-- Two-way binding ngModel untuk pencarian real-time -->
     <ion-searchbar
       [(ngModel)]="kataKunciCari"
       placeholder="Cari nama atau kategori..."
       color="light"
-      style="
-        --border-radius: 12px;
-        --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-        padding: 0;
-      "
+      class="search-bar"
       animated="true"
     >
     </ion-searchbar>
@@ -84,35 +58,18 @@
   <div
     *ngIf="tampilNotif"
     [ngStyle]="{ opacity: tampilNotif ? 1 : 0, transform: tampilNotif ? 'translateY(0)' : 'translateY(-20px)', transition: 'all 0.3s ease' }"
-    style="
-      position: sticky;
-      top: 8px;
-      z-index: 20;
-      margin: 0 12px 12px 12px;
-      background: rgba(0, 0, 0, 0.85);
-      color: white;
-      padding: 12px 16px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    "
-  >
+    class="notif-banner">
+
     <ion-icon name="checkmark-circle" color="success"></ion-icon>
     {{ notifikasi }}
   </div>
-  <div style="max-width: 480px; margin: 0 auto 16px auto">
+  <div class="add-product-wrapper">
     <ion-button
       type="submit"
       routerLink="/produkform"
       expand="block"
       color="primary"
-      style="
-        --border-radius: 12px;
-        font-weight: bold;
-        height: 48px;
-        box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3);
-      "
+      class="add-product-btn"
     >
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Tambah Produk
@@ -120,7 +77,8 @@
   </div>
 
   <div
-    [ngStyle]="{ display: 'grid', 'grid-template-columns': 'repeat(' + kolom + ', 1fr)', gap: '16px', 'align-items': 'start' }"
+    class="produk-grid"
+    [ngStyle]="{ display: 'grid', 'grid-template-columns': 'repeat(' + kolom + ', 1fr)' }"
   >
     <ion-card
       *ngFor="let barang of filteredItems"
@@ -129,40 +87,25 @@
       margin: kolom === 1 ? '0 auto 16px auto' : '0 0 16px 0',
       'max-width': kolom === 1 ? '480px' : 'none'
     }"
-      style="
-        border-radius: 14px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        overflow: hidden;
-      "
+      class="produk-card"
     >
       <!-- Gambar default jika tidak ada gambar (Property Binding) -->
       <ion-item routerLink="/produkdetail/{{barang.produkId}}">
           <img
         alt="{{barang.nama}}"
         [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'"
-        style="
-          width: 100%;
-          height: 200px;
-          object-fit: contain;
-          padding: 12px;
-          background-color: white;
-        "
+        class="produk-img"
         />
       </ion-item>
   
 
       <ion-card-header>
         <ion-card-title
-          style="font-size: 16px; font-weight: 700; color: darkslategray"
+          class="produk-title"
           >{{barang.nama}}</ion-card-title
         >
         <ion-card-subtitle
-          style="
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--ion-color-primary);
-            margin-top: 4px;
-          "
+          class="produk-subtitle"
           >Rp {{barang.hargaJual}}</ion-card-subtitle
         >
       </ion-card-header>
@@ -175,14 +118,14 @@
       <!-- Tombol keranjang ter-disable jika stok = 0 (Property Binding) -->
       <div
         *ngIf="jumlahDiKeranjang(barang) === 0"
-        style="margin: 0 12px 12px 12px"
+        class="add-cart-wrapper"
       >
         <ion-button
           expand="block"
           color="primary"
           [disabled]="barang.stok === 0"
           (click)="tambahKeKeranjang(barang)"
-          style="--border-radius: 12px; font-weight: bold; height: 48px"
+          class="add-cart-btn"
         >
           <ion-icon slot="start" name="cart-outline"></ion-icon>
           Tambah ke Keranjang
@@ -191,15 +134,7 @@
 
       <div
         *ngIf="jumlahDiKeranjang(barang) > 0"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin: 0 12px 12px 12px;
-          background: rgba(0, 0, 0, 0.05);
-          border-radius: 12px;
-          padding: 6px 12px;
-        "
+        class="cart-qty-wrapper"
       >
         <ion-button
           size="small"
@@ -209,7 +144,7 @@
         >
           <ion-icon name="remove-circle-outline" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-badge color="primary" style="font-size: 14px; padding: 6px 12px"
+        <ion-badge color="primary" class="cart-qty-badge"
           >{{ jumlahDiKeranjang(barang) }} di keranjang</ion-badge
         >
         <ion-button
@@ -226,15 +161,9 @@
       <ion-button
         type="button"
         fill="clear"
-        class="ion-margin-horizontal"
+        class="ion-margin-horizontal edit-produk-btn"
         routerLink="/produkform/{{barang.produkId}}"
         color="secondary"
-        style="
-          --border-radius: 12px;
-          font-weight: bold;
-          height: 48px;
-          box-shadow: 0 4px 12px rgba(255, 193, 7, 0.35);
-        "
       >
         <ion-icon slot="start" name="create-outline"></ion-icon>
         Edit Produk

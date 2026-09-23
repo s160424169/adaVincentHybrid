@@ -1,0 +1,64 @@
+.header-toolbar {
+  font-weight: bold;
+}
+
+.field-wrapper {
+  margin-bottom: 16px;
+}
+
+.form-item {
+  --border-radius: 12px;
+  --padding-start: 14px;
+  --padding-end: 14px;
+  border-radius: 12px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: darkslategray;
+}
+
+.required-mark {
+  color: crimson;
+}
+
+.error-wrapper {
+  padding: 6px 8px 0 8px;
+}
+
+.error-text {
+  margin: 0;
+  font-size: 13px;
+  color: crimson;
+  font-weight: 600;
+}
+
+.preview-wrapper {
+  text-align: center;
+  margin: 16px 0 24px 0;
+}
+
+.preview-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: darkslategray;
+}
+
+.preview-img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 2px dashed lightgray;
+  padding: 8px;
+  background: white;
+}
+
+.submit-btn {
+  --border-radius: 12px;
+  font-weight: bold;
+  height: 48px;
+  box-shadow: 0 4px 12px rgba(30, 126, 52, 0.3);
+  border-bottom: 4px solid var(--ion-color-secondary);
+}
