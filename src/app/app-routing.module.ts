@@ -36,7 +36,7 @@ const routes: Routes = [
     loadChildren: () => import('./transaksi/transaksi.module').then(m => m.TransaksiPageModule)
   },
   {
-    path: 'transaksidetail',
+    path: 'transaksidetail/:id',
     loadChildren: () => import('./transaksidetail/transaksidetail.module').then(m => m.TransaksidetailPageModule)
   },
   {

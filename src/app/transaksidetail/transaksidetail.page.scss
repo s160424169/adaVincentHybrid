@@ -1,0 +1,92 @@
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 70vh;
+  opacity: 0.6;
+
+  ion-icon {
+    font-size: 72px;
+    margin-bottom: 12px;
+    color: var(--ion-color-medium);
+  }
+}
+
+.trx-header {
+  padding: 16px 20px 8px;
+
+  h1 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 4px;
+  }
+
+  p {
+    font-size: 13px;
+    opacity: 0.7;
+    margin: 0;
+  }
+}
+
+.trx-list {
+  background: transparent;
+  padding: 8px 12px 24px;
+}
+
+.trx-item {
+  margin-bottom: 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  ion-thumbnail img {
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 2px;
+  }
+
+  p {
+    font-size: 12px;
+    opacity: 0.7;
+    margin: 0;
+  }
+}
+
+.item-subtotal {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.footer-bar {
+  margin: 12px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.footer-label {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.7;
+}

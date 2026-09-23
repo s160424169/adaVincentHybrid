@@ -13,4 +13,40 @@
       <ion-title size="large">Detail Transaksi</ion-title>
     </ion-toolbar>
   </ion-header>
+
+   <div *ngIf="!trx" class="empty-state">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <p>Transaksi tidak ditemukan</p>
+  </div>
+
+  <ng-container *ngIf="trx">
+    <div class="trx-header">
+      <h1>Transaksi {{ trx.id }}</h1>
+      <p>{{ trx.tanggal | date:'dd MMM yyyy, HH:mm' }}</p>
+    </div>
+
+    <ion-list class="trx-list">
+      <ion-item *ngFor="let item of trx.items" lines="none" class="trx-item">
+        <ion-thumbnail slot="start">
+          <img [src]="item.gambar || 'assets/no_image.png'" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.nama }}</h2>
+          <p>{{ item.qty }} x Rp {{ item.hargaJual }}</p>
+        </ion-label>
+        <p slot="end" class="item-subtotal">Rp {{ item.qty * item.hargaJual }}</p>
+      </ion-item>
+    </ion-list>
+  </ng-container>
 </ion-content>
+
+<ion-footer *ngIf="trx">
+  <ion-toolbar class="footer-toolbar">
+    <div class="footer-bar">
+      <p class="footer-label">Total</p>
+      <h2 class="footer-total">Rp {{ trx.total }}</h2>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+
+  

@@ -13,4 +13,24 @@
       <ion-title size="large">Transaksi</ion-title>
     </ion-toolbar>
   </ion-header>
+
+    <div *ngIf="transaksi.riwayat.length === 0" class="empty-state">
+      <ion-icon name="receipt-outline" style="font-size: 64px"></ion-icon>
+      <p>Belum ada transaksi</p>
+    </div>
+
+     <ion-list *ngIf="transaksi.riwayat.length > 0" class="trx-list">
+      <ion-item *ngFor="let trx of transaksi.riwayat" lines="none" class="trx-item"
+        routerLink="/transaksidetail/{{trx.id}}" button detail="false">
+        <ion-label>
+          <h2>Transaksi {{ trx.id }}</h2>
+          <p>{{ trx.tanggal | date:'dd MMM yyyy, HH:mm' }}</p>
+          <p>{{ trx.items.length }} produk</p>
+        </ion-label>
+        <div slot="end" class="trx-amount">
+          <p>Rp {{ trx.total }}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+
 </ion-content>
