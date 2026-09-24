@@ -1,7 +1,11 @@
 .menu-content {
   --background: whitesmoke;
 }
- 
+
+:host-context(.ion-palette-dark) .menu-content {
+  --background: #121212; 
+}
+
 .menu-header {
   background: var(--ion-color-primary);
   color: white;
@@ -37,6 +41,14 @@
   --background: transparent;
   --border-radius: 12px;
   --padding-start: 16px;
+  
+  /* Pastikan warna teks dan ikon menyesuaikan otomatis */
+  --color: var(--ion-text-color, #000000); 
+  
   margin-bottom: 6px;
   font-weight: 600;
+
+  ion-icon {
+    color: var(--ion-text-color, #000000);
+  }
 }

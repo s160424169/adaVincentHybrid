@@ -11,11 +11,17 @@
   --padding-start: 14px;
   --padding-end: 14px;
   border-radius: 12px;
+
+  border: 2px solid var(--ion-color-medium, #cccccc);
+
+  &.input-error {
+    border: 2px solid crimson !important;
+  }
 }
 
 .form-label {
   font-weight: 600;
-  color: darkslategray;
+  color: var(--ion-text-color, #2d3748) !important;
 }
 
 .required-mark {
@@ -42,7 +48,7 @@
   display: block;
   font-weight: bold;
   margin-bottom: 12px;
-  color: darkslategray;
+  color: var(--ion-text-color, #2d3748);
 }
 
 .preview-img {

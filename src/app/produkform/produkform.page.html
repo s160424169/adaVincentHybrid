@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary" style="font-weight: bold">
+  <ion-toolbar color="primary" class="header-toolbar">
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
       <ion-back-button defaultHref="/produk" color="light"></ion-back-button>
@@ -11,15 +11,16 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <form *ngIf="produkForm" [formGroup]="produkForm" (ngSubmit)="simpanProduk()">
+    
     <!-- NAMA PRODUK -->
-    <div style="margin-bottom: 16px">
-      <ion-item class="form-item" [ngStyle]="{ border: isSalah('nama') ? '2px solid crimson' : '2px solid lightgray' }">
-        <ion-label position="floating" style="font-weight: 600; color: darkslategray">
-          Nama Produk <span style="color: crimson">*</span>
+    <div class="field-wrapper">
+      <ion-item class="form-item" [class.input-error]="isSalah('nama')">
+        <ion-label position="floating" class="form-label">
+          Nama Produk <span class="required-mark">*</span>
         </ion-label>
         <ion-input formControlName="nama" type="text"></ion-input>
       </ion-item>
-      <div *ngIf="isSalah('nama')" style="padding: 6px 8px 0 8px">
+      <div *ngIf="isSalah('nama')" class="error-wrapper">
         <p class="error-text">
           Nama produk wajib diisi dan tidak boleh angka.
         </p>
@@ -27,32 +28,29 @@
     </div>
 
     <!-- INPUT URL GAMBAR -->
-    <div style="margin-bottom: 16px">
-      <ion-item class="form-item" style="border: 2px solid lightgray;">
-        <ion-label position="floating" style="font-weight: 600; color: darkslategray">URL Gambar Produk
-          (Opsional)</ion-label>
+    <div class="field-wrapper">
+      <ion-item class="form-item">
+        <ion-label position="floating" class="form-label">URL Gambar Produk (Opsional)</ion-label>
         <ion-input formControlName="gambar" type="text" placeholder="https://..."></ion-input>
       </ion-item>
     </div>
 
     <!-- PREVIEW GAMBAR -->
-    <div style="text-align: center; margin: 16px 0 24px 0">
+    <div class="preview-wrapper">
       <ion-label class="preview-label">Preview Gambar</ion-label>
       <img [src]="produkForm.get('gambar')?.value ? produkForm.get('gambar')?.value : 'assets/no_image.png'"
         class="preview-img" alt="Preview Produk" />
     </div>
 
     <!-- HARGA BELI -->
-    <div style="margin-bottom: 16px">
-      <ion-item
-        class="form-item"
-        [ngStyle]="{ border: isSalah('hargaBeli') ? '2px solid crimson' : '2px solid lightgray' }">
-        <ion-label position="floating" style="font-weight: 600; color: darkslategray">
-          Harga Beli (Rp) <span style="color: crimson">*</span>
+    <div class="field-wrapper">
+      <ion-item class="form-item" [class.input-error]="isSalah('hargaBeli')">
+        <ion-label position="floating" class="form-label">
+          Harga Beli (Rp) <span class="required-mark">*</span>
         </ion-label>
         <ion-input formControlName="hargaBeli" type="number"></ion-input>
       </ion-item>
-      <div *ngIf="isSalah('hargaBeli')" style="padding: 6px 8px 0 8px">
+      <div *ngIf="isSalah('hargaBeli')" class="error-wrapper">
         <p class="error-text">
           Harga beli minimal Rp 1.
         </p>
@@ -60,15 +58,14 @@
     </div>
 
     <!-- HARGA JUAL -->
-    <div style="margin-bottom: 16px">
-      <ion-item class="form-item"
-        [ngStyle]="{ border: isSalah('hargaJual') ? '2px solid crimson' : '2px solid lightgray' }">
-        <ion-label position="floating" style="font-weight: 600; color: darkslategray">
-          Harga Jual (Rp) <span style="color: crimson">*</span>
+    <div class="field-wrapper">
+      <ion-item class="form-item" [class.input-error]="isSalah('hargaJual')">
+        <ion-label position="floating" class="form-label">
+          Harga Jual (Rp) <span class="required-mark">*</span>
         </ion-label>
         <ion-input formControlName="hargaJual" type="number"></ion-input>
       </ion-item>
-      <div *ngIf="isSalah('hargaJual')" style="padding: 6px 8px 0 8px">
+      <div *ngIf="isSalah('hargaJual')" class="error-wrapper">
         <p class="error-text">
           Harga jual minimal Rp 1.
         </p>
@@ -76,14 +73,14 @@
     </div>
 
     <!-- JUMLAH STOK -->
-    <div style="margin-bottom: 16px">
-      <ion-item class="form-item" [ngStyle]="{ border: isSalah('stok') ? '2px solid crimson' : '2px solid lightgray' }">
-        <ion-label position="floating" style="font-weight: 600; color: darkslategray">
-          Jumlah Stok <span style="color: crimson">*</span>
+    <div class="field-wrapper">
+      <ion-item class="form-item" [class.input-error]="isSalah('stok')">
+        <ion-label position="floating" class="form-label">
+          Jumlah Stok <span class="required-mark">*</span>
         </ion-label>
         <ion-input formControlName="stok" type="number"></ion-input>
       </ion-item>
-      <div *ngIf="isSalah('stok')" style="padding: 6px 8px 0 8px">
+      <div *ngIf="isSalah('stok')" class="error-wrapper">
         <p class="error-text">
           Stok tidak boleh negatif.
         </p>
@@ -91,15 +88,14 @@
     </div>
 
     <!-- KATEGORI -->
-    <div style="margin-bottom: 16px">
-      <ion-item class="form-item"
-        [ngStyle]="{ border: isSalah('kategori') ? '2px solid crimson' : '2px solid lightgray' }">
-        <ion-label position="floating" style="font-weight: 600; color: darkslategray">
-          Kategori <span style="color: crimson">*</span>
+    <div class="field-wrapper">
+      <ion-item class="form-item" [class.input-error]="isSalah('kategori')">
+        <ion-label position="floating" class="form-label">
+          Kategori <span class="required-mark">*</span>
         </ion-label>
         <ion-input formControlName="kategori" type="text"></ion-input>
       </ion-item>
-      <div *ngIf="isSalah('kategori')" style="padding: 6px 8px 0 8px">
+      <div *ngIf="isSalah('kategori')" class="error-wrapper">
         <p class="error-text">
           Kategori wajib diisi dan tidak boleh angka.
         </p>
