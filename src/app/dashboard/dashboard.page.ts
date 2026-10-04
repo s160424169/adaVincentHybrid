@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Produk } from '../services/produk';
+import { Transaksi } from '../services/transaksi';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardPage implements OnInit {
 
-  constructor() { }
+  constructor(public produk: Produk, public transaksi: Transaksi) { }
 
   ngOnInit() {
   }

@@ -13,33 +13,6 @@
       </div>
 
       <ion-list lines="none" class="menu-list">
-        <ion-menu-toggle auto-hide="false">
-          <ion-item routerLink="/home" routerDirection="root" class="menu-item">
-            <ion-icon slot="start" name="home-outline"></ion-icon>
-            <ion-label>Dashboard</ion-label>
-          </ion-item>
-
-          <ion-item routerLink="/produk" routerDirection="root" class="menu-item">
-            <ion-icon slot="start" name="grid-outline"></ion-icon>
-            <ion-label>Produk</ion-label>
-          </ion-item>
-
-          <ion-item routerLink="/keranjang" routerDirection="root" class="menu-item">
-            <ion-icon slot="start" name="cart-outline"></ion-icon>
-            <ion-label>Keranjang</ion-label>
-          </ion-item>
-
-          <ion-item routerLink="/transaksi" routerDirection="root" class="menu-item">
-            <ion-icon slot="start" name="receipt-outline"></ion-icon>
-            <ion-label>Transaksi</ion-label>
-          </ion-item>
-
-          <ion-item routerLink="/profil" routerDirection="forward" class="menu-item">
-            <ion-icon slot="start" name="person-outline"></ion-icon>
-            <ion-label>Profile</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-
         <ion-menu-toggle auto-hide="true">
           <ion-item routerLink="/pengaturan" class="menu-item">
             <ion-icon name="settings-outline" slot="start"></ion-icon>
@@ -65,4 +38,27 @@
   </ion-menu>
 
   <ion-router-outlet id="main-content"></ion-router-outlet>
+
+  <ion-tab-bar slot="bottom" class="main-tab-bar">
+    <ion-tab-button tab="dashboard" routerLink="/dashboard" routerLinkActive="tab-selected">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Dashboard</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="produk" routerLink="/produk" routerLinkActive="tab-selected">
+      <ion-icon name="grid-outline"></ion-icon>
+      <ion-label>Produk</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="keranjang" routerLink="/keranjang" routerLinkActive="tab-selected">
+      <ion-icon name="cart-outline"></ion-icon>
+      <ion-label>Keranjang</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="transaksi" routerLink="/transaksi" routerLinkActive="tab-selected">
+      <ion-icon name="receipt-outline"></ion-icon>
+      <ion-label>Transaksi</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="profil" routerLink="/profil" routerLinkActive="tab-selected">
+      <ion-icon name="person-outline"></ion-icon>
+      <ion-label>Profil</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
 </ion-app>

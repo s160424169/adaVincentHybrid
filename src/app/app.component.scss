@@ -52,3 +52,19 @@
     color: var(--ion-text-color, #000000);
   }
 }
+
+.main-tab-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  padding-bottom: var(--ion-safe-area-bottom);
+  border-top: 1px solid var(--ion-color-step-150, #d7d8da);
+  background: var(--ion-background-color);
+
+  ion-tab-button {
+    --color: var(--ion-color-medium);
+    --color-selected: var(--ion-color-primary);
+  }
+}

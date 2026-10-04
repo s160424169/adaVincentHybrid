@@ -13,4 +13,40 @@
       <ion-title size="large">Dashboard</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="welcome-text">
+    <h2>Selamat datang, Bu Marni</h2>
+    <p>Berikut ringkasan toko hari ini</p>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <ion-icon name="cube-outline" color="primary"></ion-icon>
+      <h1>{{ produk.items.length }}</h1>
+      <p>Jumlah Produk</p>
+    </div>
+
+    <div class="summary-card">
+      <ion-icon name="receipt-outline" color="primary"></ion-icon>
+      <h1>{{ transaksi.jumlahHariIni }}</h1>
+      <p>Transaksi Hari Ini</p>
+    </div>
+
+    <div class="summary-card wide">
+      <ion-icon name="trophy-outline" color="secondary"></ion-icon>
+      <h1>{{ transaksi.produkTerlaris }}</h1>
+      <p>Produk Terlaris</p>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <ion-button expand="block" color="primary" routerLink="/produk">
+      <ion-icon slot="start" name="grid-outline"></ion-icon>
+      Lihat Produk
+    </ion-button>
+    <ion-button expand="block" fill="outline" color="primary" routerLink="/keranjang">
+      <ion-icon slot="start" name="cart-outline"></ion-icon>
+      Buka Keranjang
+    </ion-button>
+  </div>
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Produk } from '../services/produk';
+import { Produk, ProdukItem } from '../services/produk';
 
 @Component({
   selector: 'app-produkdetail',
@@ -10,16 +10,19 @@ import { Produk } from '../services/produk';
 })
 export class ProdukdetailPage implements OnInit {
 
-  id = 0
-  items: any[] = [];
+  produk: ProdukItem | null = null;
 
   constructor(private route: ActivatedRoute, private produkservice: Produk) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.items = this.produkservice.items
-      this.id = params['id']
-    })
+      const id = Number(params['id']);
+      this.produk = this.produkservice.items.find(item => item.produkId === id) ?? null;
+    });
+  }
+
+  get untung(): number {
+    return this.produk ? this.produk.hargaJual - this.produk.hargaBeli : 0;
   }
 
 }

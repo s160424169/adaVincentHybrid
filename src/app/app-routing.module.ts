@@ -3,12 +3,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
   },
   {
-    path: '',
-    redirectTo: 'home',
+    path: 'home',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
   },
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
     loadChildren: () => import('./produkform/produkform.module').then(m => m.ProdukformPageModule)
   },
   {
-    path: 'produkform/:id', // Route khusus untuk mode Edit
+    path: 'produkform/:id',
     loadChildren: () => import('./produkform/produkform.module').then(m => m.ProdukformPageModule)
   },
   {
