@@ -10,101 +10,100 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <form *ngIf="produkForm" [formGroup]="produkForm" (ngSubmit)="simpanProduk()">
-    
-    <!-- NAMA PRODUK -->
-    <div class="field-wrapper">
-      <ion-item class="form-item" [class.input-error]="isSalah('nama')">
-        <ion-label position="floating" class="form-label">
-          Nama Produk <span class="required-mark">*</span>
-        </ion-label>
-        <ion-input formControlName="nama" type="text"></ion-input>
-      </ion-item>
-      <div *ngIf="isSalah('nama')" class="error-wrapper">
-        <p class="error-text">
-          Nama produk wajib diisi dan tidak boleh angka.
-        </p>
-      </div>
-    </div>
 
-    <!-- INPUT URL GAMBAR -->
-    <div class="field-wrapper">
-      <ion-item class="form-item">
-        <ion-label position="floating" class="form-label">URL Gambar Produk (Opsional)</ion-label>
-        <ion-input formControlName="gambar" type="text" placeholder="https://..."></ion-input>
-      </ion-item>
-    </div>
 
-    <!-- PREVIEW GAMBAR -->
-    <div class="preview-wrapper">
-      <ion-label class="preview-label">Preview Gambar</ion-label>
-      <img [src]="produkForm.get('gambar')?.value ? produkForm.get('gambar')?.value : 'assets/no_image.png'"
-        class="preview-img" alt="Preview Produk" />
+  <!-- NAMA PRODUK -->
+  <div class="field-wrapper">
+    <ion-item class="form-item" [class.input-error]="isSalah('nama')">
+      <ion-label position="floating" class="form-label">
+        Nama Produk <span class="required-mark">*</span>
+      </ion-label>
+      <ion-input [(ngModel)]="produk.nama" (ionBlur)="sentuh('nama')" type="text"></ion-input>
+    </ion-item>
+    <div *ngIf="isSalah('nama')" class="error-wrapper">
+      <p class="error-text">
+        Nama produk wajib diisi dan tidak boleh angka.
+      </p>
     </div>
+  </div>
 
-    <!-- HARGA BELI -->
-    <div class="field-wrapper">
-      <ion-item class="form-item" [class.input-error]="isSalah('hargaBeli')">
-        <ion-label position="floating" class="form-label">
-          Harga Beli (Rp) <span class="required-mark">*</span>
-        </ion-label>
-        <ion-input formControlName="hargaBeli" type="number"></ion-input>
-      </ion-item>
-      <div *ngIf="isSalah('hargaBeli')" class="error-wrapper">
-        <p class="error-text">
-          Harga beli minimal Rp 1.
-        </p>
-      </div>
+  <!-- INPUT URL GAMBAR -->
+  <div class="field-wrapper">
+    <ion-item class="form-item">
+      <ion-label position="floating" class="form-label">URL Gambar Produk (Opsional)</ion-label>
+      <ion-input [(ngModel)]="produk.gambar" type="text" placeholder="https://..."></ion-input>
+    </ion-item>
+  </div>
+
+  <!-- PREVIEW GAMBAR -->
+  <div class="preview-wrapper">
+    <ion-label class="preview-label">Preview Gambar</ion-label>
+    <img [src]="produk.gambar ? produk.gambar : 'assets/no_image.png'" class="preview-img" alt="Preview Produk" />
+  </div>
+
+  <!-- HARGA BELI -->
+  <div class="field-wrapper">
+    <ion-item class="form-item" [class.input-error]="isSalah('hargaBeli')">
+      <ion-label position="floating" class="form-label">
+        Harga Beli (Rp) <span class="required-mark">*</span>
+      </ion-label>
+      <ion-input [(ngModel)]="produk.hargaBeli" (ionBlur)="sentuh('hargaBeli')" type="number"></ion-input>
+    </ion-item>
+    <div *ngIf="isSalah('hargaBeli')" class="error-wrapper">
+      <p class="error-text">
+        Harga beli minimal Rp 1.
+      </p>
     </div>
+  </div>
 
-    <!-- HARGA JUAL -->
-    <div class="field-wrapper">
-      <ion-item class="form-item" [class.input-error]="isSalah('hargaJual')">
-        <ion-label position="floating" class="form-label">
-          Harga Jual (Rp) <span class="required-mark">*</span>
-        </ion-label>
-        <ion-input formControlName="hargaJual" type="number"></ion-input>
-      </ion-item>
-      <div *ngIf="isSalah('hargaJual')" class="error-wrapper">
-        <p class="error-text">
-          Harga jual minimal Rp 1.
-        </p>
-      </div>
+  <!-- HARGA JUAL -->
+  <div class="field-wrapper">
+    <ion-item class="form-item" [class.input-error]="isSalah('hargaJual')">
+      <ion-label position="floating" class="form-label">
+        Harga Jual (Rp) <span class="required-mark">*</span>
+      </ion-label>
+      <ion-input [(ngModel)]="produk.hargaJual" (ionBlur)="sentuh('hargaJual')" type="number"></ion-input>
+    </ion-item>
+    <div *ngIf="isSalah('hargaJual')" class="error-wrapper">
+      <p class="error-text">
+        Harga jual minimal Rp 1.
+      </p>
     </div>
+  </div>
 
-    <!-- JUMLAH STOK -->
-    <div class="field-wrapper">
-      <ion-item class="form-item" [class.input-error]="isSalah('stok')">
-        <ion-label position="floating" class="form-label">
-          Jumlah Stok <span class="required-mark">*</span>
-        </ion-label>
-        <ion-input formControlName="stok" type="number"></ion-input>
-      </ion-item>
-      <div *ngIf="isSalah('stok')" class="error-wrapper">
-        <p class="error-text">
-          Stok tidak boleh negatif.
-        </p>
-      </div>
+  <!-- JUMLAH STOK -->
+  <div class="field-wrapper">
+    <ion-item class="form-item" [class.input-error]="isSalah('stok')">
+      <ion-label position="floating" class="form-label">
+        Jumlah Stok <span class="required-mark">*</span>
+      </ion-label>
+      <ion-input [(ngModel)]="produk.stok" (ionBlur)="sentuh('stok')" type="number"></ion-input>
+    </ion-item>
+    <div *ngIf="isSalah('stok')" class="error-wrapper">
+      <p class="error-text">
+        Stok tidak boleh negatif.
+      </p>
     </div>
+  </div>
 
-    <!-- KATEGORI -->
-    <div class="field-wrapper">
-      <ion-item class="form-item" [class.input-error]="isSalah('kategori')">
-        <ion-label position="floating" class="form-label">
-          Kategori <span class="required-mark">*</span>
-        </ion-label>
-        <ion-input formControlName="kategori" type="text"></ion-input>
-      </ion-item>
-      <div *ngIf="isSalah('kategori')" class="error-wrapper">
-        <p class="error-text">
-          Kategori wajib diisi dan tidak boleh angka.
-        </p>
-      </div>
+  <!-- KATEGORI -->
+  <div class="field-wrapper">
+    <ion-item class="form-item" [class.input-error]="isSalah('kategori')">
+      <ion-label position="floating" class="form-label">
+        Kategori <span class="required-mark">*</span>
+      </ion-label>
+      <ion-input [(ngModel)]="produk.kategori" (ionBlur)="sentuh('kategori')" type="text"></ion-input>
+    </ion-item>
+    <div *ngIf="isSalah('kategori')" class="error-wrapper">
+      <p class="error-text">
+        Kategori wajib diisi dan tidak boleh angka.
+      </p>
     </div>
+  </div>
 
-    <ion-button expand="block" type="submit" class="ion-margin-top submit-btn" color="primary">
-      <ion-text *ngIf="!edit">SIMPAN PRODUK</ion-text>
-      <ion-text *ngIf="edit">EDIT PRODUK</ion-text>
-    </ion-button>
-  </form>
+  <ion-button expand="block" class="ion-margin-top submit-btn" color="primary" (click)="simpanProduk()">
+    <ion-text *ngIf="!edit">SIMPAN PRODUK</ion-text>
+    <ion-text *ngIf="edit">EDIT PRODUK</ion-text>
+  </ion-button>
+
 </ion-content>

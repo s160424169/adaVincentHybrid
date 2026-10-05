@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+//import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Produk } from '../services/produk';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,45 +10,94 @@ import { ActivatedRoute, Router } from '@angular/router';
   standalone: false,
 })
 export class ProdukformPage implements OnInit {
-  produkForm!: FormGroup;
+  // produkForm!: FormGroup;
   edit: boolean = false;
   id: number = 0;
+  submitted: boolean = false;
+
+  disentuh: { [kolom: string]: boolean } = {};
+
+  produk: any = this.produkKosong();
 
   constructor(private produkservice: Produk, private route: ActivatedRoute, private router: Router) { }
 
-  isSalah(namaKolom: string): boolean {
-    const kolom = this.produkForm.get(namaKolom);
-    return !!(kolom && kolom.invalid && (kolom.touched || kolom.dirty || this.produkForm.touched));
+  produkKosong() {
+    return {
+      nama: '',
+      hargaBeli: null,
+      hargaJual: null,
+      stok: null,
+      kategori: '',
+      gambar: ''
+    };
   }
 
-  inisiasiForm() {
-    this.produkForm = new FormGroup({
-      nama: new FormControl("", [Validators.required]),
-      hargaBeli: new FormControl(null, [Validators.required, Validators.min(1)]),
-      hargaJual: new FormControl(null, [Validators.required, Validators.min(1)]),
-      stok: new FormControl(null, [Validators.required, Validators.min(0)]),
-      kategori: new FormControl("", [Validators.required]),
-      gambar: new FormControl("") // Tambahan form control untuk gambar (opsional)
-    });
+  sentuh(kolom: string) {
+    this.disentuh[kolom] = true;
+  }
+
+  kolomTidakValid(kolom: string): boolean {
+    const p = this.produk;
+
+    if (kolom === 'nama') {
+      const nama = (p.nama ?? '').toString().trim();
+      return nama === '' || /^\d+$/.test(nama);
+    }
+    if (kolom === 'hargaBeli') {
+      return p.hargaBeli === null || p.hargaBeli === '' || Number(p.hargaBeli) < 1;
+    }
+    if (kolom === 'hargaJual') {
+      return p.hargaJual === null || p.hargaJual === '' || Number(p.hargaJual) < 1;
+    }
+    if (kolom === 'stok') {
+      return p.stok === null || p.stok === '' || Number(p.stok) < 0;
+    }
+    if (kolom === 'kategori') {
+      const kategori = (p.kategori ?? '').toString().trim();
+      return kategori === '' || /^\d+$/.test(kategori);
+    }
+
+    return false;
+  }
+
+  isSalah(kolom: string): boolean {
+    return this.kolomTidakValid(kolom) && (this.disentuh[kolom] || this.submitted);
+  }
+
+  formValid(): boolean {
+    if (this.kolomTidakValid('nama')) return false;
+    if (this.kolomTidakValid('hargaBeli')) return false;
+    if (this.kolomTidakValid('hargaJual')) return false;
+    if (this.kolomTidakValid('stok')) return false;
+    if (this.kolomTidakValid('kategori')) return false;
+    return true;
   }
 
   isiFormUntukEdit(id: number) {
     const dataProduk = this.produkservice.items.find(item => item.produkId === id);
     if (dataProduk) {
-      this.produkForm.patchValue({
+      this.produk = {
         nama: dataProduk.nama,
         hargaBeli: dataProduk.hargaBeli,
         hargaJual: dataProduk.hargaJual,
         stok: dataProduk.stok,
         kategori: dataProduk.kategori,
-        gambar: dataProduk.gambar // Mengisi input gambar saat edit
-      });
+        gambar: dataProduk.gambar
+      };
     }
   }
 
+  resetForm() {
+    this.produk = this.produkKosong();
+    this.disentuh = {};
+    this.submitted = false;
+  }
+
   simpanProduk() {
-    if (this.produkForm.valid) {
-      const val = this.produkForm.value;
+    this.submitted = true;
+
+    if (this.formValid()) {
+      const val = this.produk;
 
       if (this.edit && this.id !== 0) {
         this.produkservice.editProduk(
@@ -58,7 +107,7 @@ export class ProdukformPage implements OnInit {
           Number(val.hargaJual),
           Number(val.stok),
           val.kategori,
-          val.gambar // Kirim url gambar
+          val.gambar
         );
       } else {
         this.produkservice.tambahProduk(
@@ -67,18 +116,15 @@ export class ProdukformPage implements OnInit {
           Number(val.hargaJual),
           Number(val.stok),
           val.kategori,
-          val.gambar // Kirim url gambar
+          val.gambar
         );
       }
-      this.produkForm.reset();
-      this.router.navigate(['/produk']);
-    } else {
-      this.produkForm.markAllAsTouched();
     }
+    this.resetForm();
+    this.router.navigate(['/produk']);
   }
 
   ngOnInit() {
-    this.inisiasiForm();
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.id = Number(params['id']);
@@ -87,7 +133,7 @@ export class ProdukformPage implements OnInit {
       } else {
         this.edit = false;
         this.id = 0;
-        this.produkForm.reset();
+        this.resetForm();
       }
     });
   }
