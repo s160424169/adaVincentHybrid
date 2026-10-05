@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';  
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { Transaksi } from '../services/transaksi';
 
 @Component({
@@ -7,10 +8,14 @@ import { Transaksi } from '../services/transaksi';
   styleUrls: ['./transaksi.page.scss'],
   standalone: false,
 })
-export class TransaksiPage implements OnInit {
+export class TransaksiPage implements OnInit, ViewWillEnter {
 
-  constructor(public transaksi: Transaksi) { }
-
+  constructor(public transaksi: Transaksi, private cdr: ChangeDetectorRef) { }
+  
+  ionViewWillEnter() {
+    // Memaksa halaman mengambil & merender ulang daftar transaksi
+    this.cdr.detectChanges();
+  }
   ngOnInit() {
   }
 

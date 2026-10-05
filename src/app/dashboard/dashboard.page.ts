@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { Produk } from '../services/produk';
 import { Transaksi } from '../services/transaksi';
 
@@ -8,10 +9,15 @@ import { Transaksi } from '../services/transaksi';
   styleUrls: ['./dashboard.page.scss'],
   standalone: false,
 })
-export class DashboardPage implements OnInit {
+export class DashboardPage implements OnInit, ViewWillEnter {
 
-  constructor(public produk: Produk, public transaksi: Transaksi) { }
-
+  constructor(public produk: Produk, public transaksi: Transaksi,
+    private cdr: ChangeDetectorRef
+  ) { }
+  ionViewWillEnter() {
+    // Memaksa halaman memperbarui tampilan data keranjang terbaru saat tab dibuka
+    this.cdr.detectChanges();
+  }
   ngOnInit() {
   }
 

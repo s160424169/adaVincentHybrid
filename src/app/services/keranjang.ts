@@ -15,6 +15,7 @@ export class Keranjang {
     } else {
       this.items.push({ ...item, qty: 1,dipilih: true });
     }
+    this.items = [...this.items];
   }
 
   hapus(produkId: number) {

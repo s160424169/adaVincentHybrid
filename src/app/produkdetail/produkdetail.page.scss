@@ -1,0 +1,8 @@
+ion-item ion-note[slot="end"] {
+  font-size: 16px; /* Silakan ubah angka 16px sesuai ukuran yang Anda inginkan */
+}
+
+/* Jika Anda ingin ukuran font bagian "Untung per item" lebih besar dari yang lain */
+ion-item ion-note[color="success"] {
+  font-size: 18px; 
+}

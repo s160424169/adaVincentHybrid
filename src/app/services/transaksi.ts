@@ -12,7 +12,7 @@ export class Transaksi {
       items: items.map(i => ({ ...i })),
       total: total,
     };
-    this.riwayat.unshift(trx);
+    this.riwayat = [trx, ...this.riwayat];
     return trx;
   }
 

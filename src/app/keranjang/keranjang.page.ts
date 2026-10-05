@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';  
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Keranjang } from '../services/keranjang';
 import { Transaksi } from '../services/transaksi';
 import { Produk } from '../services/produk';
@@ -19,12 +20,17 @@ interface ItemKeranjang {
   styleUrls: ['./keranjang.page.scss'],
   standalone: false,
 })
-export class KeranjangPage implements OnInit {
+export class KeranjangPage implements OnInit, ViewWillEnter {
   bumpId: any = null;
 
   constructor(public keranjang: Keranjang, private transaksi: Transaksi, private produk: Produk,
-     private router: Router) { }
-
+    private router: Router,
+    private cdr: ChangeDetectorRef) { }
+    
+  ionViewWillEnter() {
+    // Memaksa halaman memperbarui tampilan data keranjang terbaru saat tab dibuka
+    this.cdr.detectChanges();
+  }
   ngOnInit() {
     // if (this.keranjang.items.length === 0) {
     //   this.produk.items.forEach((item) => {
@@ -32,6 +38,7 @@ export class KeranjangPage implements OnInit {
     //   });
     // }
   }
+
 
   tambah(item: ItemKeranjang) {
     this.keranjang.tambahQty(item);
@@ -54,10 +61,10 @@ export class KeranjangPage implements OnInit {
   }
 
   konfirmasi() {
-  const dipilih = this.keranjang.items.filter(i => i.dipilih);
-  this.transaksi.konfirmasi(dipilih, this.keranjang.totalHarga);
-  this.keranjang.items = this.keranjang.items.filter(i => !i.dipilih);
-   this.router.navigateByUrl('/transaksi'); 
-}
+    const dipilih = this.keranjang.items.filter(i => i.dipilih);
+    this.transaksi.konfirmasi(dipilih, this.keranjang.totalHarga);
+    this.keranjang.items = this.keranjang.items.filter(i => !i.dipilih);
+    this.router.navigateByUrl('/transaksi');
+  }
 
 }
