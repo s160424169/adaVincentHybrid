@@ -75,7 +75,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  // box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -87,6 +87,10 @@
 
 .footer-label {
   margin: 0;
-  font-size: 12px;
+  font-size: 20px;
   opacity: 0.7;
+}
+
+ion-footer {
+  margin-bottom: 50px;
 }

@@ -5,15 +5,14 @@ import { Produk } from './produk'; // Import service Produk
 export class Keranjang {
   items: any[] = [];
 
-  // Inject Produk service untuk memperbarui stok utama
-  constructor(private produkService: Produk) {}
+  constructor(private produkService: Produk) { }
 
   tambahkan(item: any) {
     const ada = this.items.find(i => i.produkId === item.produkId);
     if (ada) {
       ada.qty++;
     } else {
-      this.items.push({ ...item, qty: 1,dipilih: true });
+      this.items.push({ ...item, qty: 1, dipilih: true });
     }
     this.items = [...this.items];
   }
@@ -26,7 +25,7 @@ export class Keranjang {
       if (produkAsli) {
         produkAsli.stok += itemDiKeranjang.qty;
       }
-      
+
       // Hapus barang dari keranjang
       this.items = this.items.filter(i => i.produkId !== produkId);
     }
@@ -56,16 +55,16 @@ export class Keranjang {
   }
 
   get totalHarga(): number {
-  return this.items.filter(i => i.dipilih).reduce((total, i) => total + i.hargaJual * i.qty, 0);
-}
+    return this.items.filter(i => i.dipilih).reduce((total, i) => total + i.hargaJual * i.qty, 0);
+  }
 
-get jumlahItem(): number {
-  return this.items.filter(i => i.dipilih).reduce((total, i) => total + i.qty, 0);
-}
+  get jumlahItem(): number {
+    return this.items.filter(i => i.dipilih).reduce((total, i) => total + i.qty, 0);
+  }
 
-get jumlahDipilih(): number {
-  return this.items.filter(i => i.dipilih).length;
-}
+  get jumlahDipilih(): number {
+    return this.items.filter(i => i.dipilih).length;
+  }
 
   kosongkan() {
     // Kembalikan seluruh stok barang jika transaksi dibatalkan

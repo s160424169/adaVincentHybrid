@@ -20,16 +20,12 @@ interface ItemKeranjang {
   styleUrls: ['./keranjang.page.scss'],
   standalone: false,
 })
-export class KeranjangPage implements OnInit, ViewWillEnter {
+export class KeranjangPage implements OnInit {
   bumpId: any = null;
 
   constructor(public keranjang: Keranjang, private transaksi: Transaksi, private produk: Produk,
     private router: Router,) { }
     
-  ionViewWillEnter() {
-    // Memaksa halaman memperbarui tampilan data keranjang terbaru saat tab dibuka
-
-  }
   ngOnInit() {
     // if (this.keranjang.items.length === 0) {
     //   this.produk.items.forEach((item) => {

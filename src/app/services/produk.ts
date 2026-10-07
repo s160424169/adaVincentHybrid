@@ -124,7 +124,7 @@ export class Produk {
         this.items.push({
             produkId: p_id,
             nama: p_nama,
-            gambar: p_gambar || this.gambarDefault, // Simpan gambar jika ada
+            gambar: p_gambar || this.gambarDefault, 
             hargaBeli: p_hargaBeli,
             hargaJual: p_hargaJual,
             stok: p_stok,
@@ -141,7 +141,7 @@ export class Produk {
             item.hargaJual = p_hargaJual;
             item.stok = p_stok;
             item.kategori = p_kategori;
-            item.gambar = p_gambar || ''; // Update gambar
+            item.gambar = p_gambar || '';
         }
     }
 }

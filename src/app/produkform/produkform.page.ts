@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Produk } from '../services/produk';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   standalone: false,
 })
 export class ProdukformPage implements OnInit {
-  // produkForm!: FormGroup;
   edit: boolean = false;
   id: number = 0;
   submitted: boolean = false;
@@ -18,6 +16,10 @@ export class ProdukformPage implements OnInit {
   disentuh: { [kolom: string]: boolean } = {};
 
   produk: any = this.produkKosong();
+
+  kategoriPilihan: string = '';
+  kategoriLainnya: string = '';
+  kategori: string[] = ["Makanan", "Minuman", "Snack"]
 
   constructor(private produkservice: Produk, private route: ActivatedRoute, private router: Router) { }
 
@@ -34,6 +36,22 @@ export class ProdukformPage implements OnInit {
 
   sentuh(kolom: string) {
     this.disentuh[kolom] = true;
+  }
+
+  onKategoriSelectChange() {
+    this.sentuh('kategori');
+    if (this.kategoriPilihan !== 'Lainnya') {
+      this.kategoriLainnya = '';
+      this.produk.kategori = this.kategoriPilihan;
+    } else {
+      this.produk.kategori = this.kategoriLainnya;
+    }
+  }
+
+  onKategoriLainnyaInput() {
+    if (this.kategoriPilihan === 'Lainnya') {
+      this.produk.kategori = this.kategoriLainnya;
+    }
   }
 
   kolomTidakValid(kolom: string): boolean {
@@ -54,7 +72,7 @@ export class ProdukformPage implements OnInit {
     }
     if (kolom === 'kategori') {
       const kategori = (p.kategori ?? '').toString().trim();
-      return kategori === '' || /^\d+$/.test(kategori);
+      return kategori === '' || /\d/.test(kategori);
     }
 
     return false;
@@ -84,11 +102,21 @@ export class ProdukformPage implements OnInit {
         kategori: dataProduk.kategori,
         gambar: dataProduk.gambar
       };
+
+      if (this.kategori.includes(dataProduk.kategori)) {
+        this.kategoriPilihan = dataProduk.kategori;
+        this.kategoriLainnya = '';
+      } else {
+        this.kategoriPilihan = 'Lainnya';
+        this.kategoriLainnya = dataProduk.kategori;
+      }
     }
   }
 
   resetForm() {
     this.produk = this.produkKosong();
+    this.kategoriLainnya = ''
+    this.kategoriPilihan = ''
     this.disentuh = {};
     this.submitted = false;
   }

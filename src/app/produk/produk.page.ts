@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core'; 
-import { ViewWillEnter } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { Produk } from '../services/produk';
 import { Keranjang } from '../services/keranjang';
 
@@ -9,29 +8,19 @@ import { Keranjang } from '../services/keranjang';
   styleUrls: ['./produk.page.scss'],
   standalone: false,
 })
-export class ProdukPage implements OnInit, ViewWillEnter {
+export class ProdukPage implements OnInit {
   items: any[] = [];
   kataKunciCari: string = '';
   kolom: number = 1;
   notifikasi: string = '';
   tampilNotif: boolean = false;
 
-  
-  constructor(
-    private produkservice: Produk,
-    public keranjangService: Keranjang, // Inject service keranjang
-  ) { }
-  
+  constructor(private produkservice: Produk, public keranjangService: Keranjang,) { }
+
   ngOnInit() {
     this.items = this.produkservice.items;
   }
 
-  // 4. Tambahkan lifecycle hook dari Ionic
-  ionViewWillEnter() {
-    // Memaksa Angular merender ulang UI saat tab ini aktif.
-    // Ini akan memicu ulang pembacaan stok terbaru dan fungsi jumlahDiKeranjang()
-  }
-  
   setKolom(jumlah: number) {
     this.kolom = jumlah;
   }
@@ -77,6 +66,4 @@ export class ProdukPage implements OnInit, ViewWillEnter {
       }
     }
   }
-
-  
 }

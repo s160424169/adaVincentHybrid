@@ -11,8 +11,6 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
 
-
-  <!-- NAMA PRODUK -->
   <div class="field-wrapper">
     <ion-item class="form-item" [class.input-error]="isSalah('nama')">
       <ion-label position="floating" class="form-label">
@@ -27,7 +25,6 @@
     </div>
   </div>
 
-  <!-- INPUT URL GAMBAR -->
   <div class="field-wrapper">
     <ion-item class="form-item">
       <ion-label position="floating" class="form-label">URL Gambar Produk (Opsional)</ion-label>
@@ -35,13 +32,11 @@
     </ion-item>
   </div>
 
-  <!-- PREVIEW GAMBAR -->
   <div class="preview-wrapper">
     <ion-label class="preview-label">Preview Gambar</ion-label>
     <img [src]="produk.gambar ? produk.gambar : 'assets/no_image.png'" class="preview-img" alt="Preview Produk" />
   </div>
 
-  <!-- HARGA BELI -->
   <div class="field-wrapper">
     <ion-item class="form-item" [class.input-error]="isSalah('hargaBeli')">
       <ion-label position="floating" class="form-label">
@@ -56,7 +51,6 @@
     </div>
   </div>
 
-  <!-- HARGA JUAL -->
   <div class="field-wrapper">
     <ion-item class="form-item" [class.input-error]="isSalah('hargaJual')">
       <ion-label position="floating" class="form-label">
@@ -71,7 +65,6 @@
     </div>
   </div>
 
-  <!-- JUMLAH STOK -->
   <div class="field-wrapper">
     <ion-item class="form-item" [class.input-error]="isSalah('stok')">
       <ion-label position="floating" class="form-label">
@@ -86,14 +79,28 @@
     </div>
   </div>
 
-  <!-- KATEGORI -->
   <div class="field-wrapper">
     <ion-item class="form-item" [class.input-error]="isSalah('kategori')">
       <ion-label position="floating" class="form-label">
         Kategori <span class="required-mark">*</span>
       </ion-label>
-      <ion-input [(ngModel)]="produk.kategori" (ionBlur)="sentuh('kategori')" type="text"></ion-input>
+      <ion-select [(ngModel)]="kategoriPilihan" (ionChange)="onKategoriSelectChange()" interface="popover"
+        placeholder="Pilih Kategori">
+        <ion-select-option value="Makanan">Makanan</ion-select-option>
+        <ion-select-option value="Minuman">Minuman</ion-select-option>
+        <ion-select-option value="Snack">Snack</ion-select-option>
+        <ion-select-option value="Lainnya">Lainnya...</ion-select-option>
+      </ion-select>
     </ion-item>
+
+    <ion-item *ngIf="kategoriPilihan === 'Lainnya'" class="form-item ion-margin-top"
+      [class.input-error]="isSalah('kategori')">
+      <ion-label position="floating" class="form-label">Kategori Lainnya <span class="required-mark">*</span></ion-label>
+      <ion-input [(ngModel)]="kategoriLainnya" (ionInput)="onKategoriLainnyaInput()" (ionBlur)="sentuh('kategori')"
+        type="text" placeholder="Masukkan nama kategori baru">
+      </ion-input>
+    </ion-item>
+
     <div *ngIf="isSalah('kategori')" class="error-wrapper">
       <p class="error-text">
         Kategori wajib diisi dan tidak boleh angka.

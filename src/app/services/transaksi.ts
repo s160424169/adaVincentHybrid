@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class Transaksi {
   riwayat: any[] = [];
   private urutan = 1;
+  isKonfirmasi: boolean = false;
 
   konfirmasi(items: any[], total: number) {
     const trx = {
@@ -13,6 +14,7 @@ export class Transaksi {
       total: total,
     };
     this.riwayat = [trx, ...this.riwayat];
+    this.isKonfirmasi = true;
     return trx;
   }
 

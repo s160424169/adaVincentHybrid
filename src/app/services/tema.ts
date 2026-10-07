@@ -52,41 +52,6 @@ export class Tema {
         sekunderContrast: '#000000'
     },
   ];
-  // daftarPalet = [
-  //   {
-  //     nama: 'hijau-kuning',
-  //     label: 'Hijau Kuning',
-  //     primary: 'green',
-  //     shade: 'darkgreen',
-  //     tint: 'lightgreen',
-  //     contrast: 'black'
-  //   },
-  //   {
-  //     nama: 'biru-klasik',
-  //     label: 'Biru Klasik',
-  //     primary: 'blue',
-  //     shade: 'darkblue',
-  //     tint: 'lightskyblue',
-  //     contrast: 'white'
-  //   },
-  //   {
-  //     nama: 'merah-cabai',
-  //     label: 'Merah Cabai',
-  //     primary: 'red',
-  //     shade: 'darkred',
-  //     tint: 'lightcoral',
-  //     contrast: 'white'
-  //   },
-  //   {
-  //     nama: 'ungu-senja',
-  //     label: 'Ungu Senja',
-  //     primary: 'purple',
-  //     shade: 'indigo',
-  //     tint: 'mediumpurple',
-  //     contrast: 'white'
-  //   },
-  // ];
-
 
   paletAktif = 'hijau-kuning';
   modeGelap = false;

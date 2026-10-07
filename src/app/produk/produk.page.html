@@ -3,51 +3,28 @@
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="page-title">Produk</ion-title
-    >
+    <ion-title class="page-title">Produk</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/keranjang" aria-label="Buka keranjang">
         <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
-        <ion-badge
-          *ngIf="keranjangService.jumlahItem > 0"
-          color="danger"
-          class="cart-badge"
-        ></ion-badge>
+        <ion-badge *ngIf="keranjangService.jumlahItem > 0" color="danger" class="cart-badge"></ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-toolbar
-    color="primary"
-    class="searh-toolbar"
-  >
-    <!-- Two-way binding ngModel untuk pencarian real-time -->
-    <ion-searchbar
-      [(ngModel)]="kataKunciCari"
-      placeholder="Cari nama atau kategori..."
-      color="light"
-      class="search-bar"
-      animated="true"
-    >
+  <ion-toolbar color="primary" class="searh-toolbar">
+    <ion-searchbar [(ngModel)]="kataKunciCari" placeholder="Cari nama atau kategori..." color="light" class="search-bar"
+      animated="true">
     </ion-searchbar>
 
     <ion-buttons slot="end">
-      <ion-button
-        (click)="setKolom(1)"
-        [color]="kolom === 1 ? 'light' : 'medium'"
-      >
+      <ion-button (click)="setKolom(1)" [color]="kolom === 1 ? 'light' : 'medium'">
         <ion-icon name="reorder-three-outline" slot="icon-only"></ion-icon>
       </ion-button>
-      <ion-button
-        (click)="setKolom(2)"
-        [color]="kolom === 2 ? 'light' : 'medium'"
-      >
+      <ion-button (click)="setKolom(2)" [color]="kolom === 2 ? 'light' : 'medium'">
         <ion-icon name="grid-outline" slot="icon-only"></ion-icon>
       </ion-button>
-      <ion-button
-        (click)="setKolom(3)"
-        [color]="kolom === 3 ? 'light' : 'medium'"
-      >
+      <ion-button (click)="setKolom(3)" [color]="kolom === 3 ? 'light' : 'medium'">
         <ion-icon name="apps-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -55,8 +32,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <div
-    *ngIf="tampilNotif"
+  <div *ngIf="tampilNotif"
     [ngStyle]="{ opacity: tampilNotif ? 1 : 0, transform: tampilNotif ? 'translateY(0)' : 'translateY(-20px)', transition: 'all 0.3s ease' }"
     class="notif-banner">
 
@@ -64,50 +40,26 @@
     {{ notifikasi }}
   </div>
   <div class="add-product-wrapper">
-    <ion-button
-      type="submit"
-      routerLink="/produkform"
-      expand="block"
-      color="primary"
-      class="add-product-btn"
-    >
+    <ion-button type="submit" routerLink="/produkform" expand="block" color="primary" class="add-product-btn">
       <ion-icon slot="start" name="add-outline"></ion-icon>
       Tambah Produk
     </ion-button>
   </div>
 
-  <div
-    class="produk-grid"
-    [ngStyle]="{ display: 'grid', 'grid-template-columns': 'repeat(' + kolom + ', 1fr)' }"
-  >
-    <ion-card
-      *ngFor="let barang of filteredItems"
-      [ngStyle]="{
+  <div class="produk-grid" [ngStyle]="{ display: 'grid', 'grid-template-columns': 'repeat(' + kolom + ', 1fr)' }">
+    <ion-card *ngFor="let barang of filteredItems" [ngStyle]="{
       width: kolom === 1 ? 'auto' : '100%',
       margin: kolom === 1 ? '0 auto 16px auto' : '0 0 16px 0',
       'max-width': kolom === 1 ? '480px' : 'none'
-    }"
-      class="produk-card"
-    >
-      <!-- Gambar default jika tidak ada gambar (Property Binding) -->
+    }" class="produk-card">
       <ion-item routerLink="/produkdetail/{{barang.produkId}}">
-          <img
-        alt="{{barang.nama}}"
-        [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'"
-        class="produk-img"
-        />
+        <img alt="{{barang.nama}}" [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'"
+          class="produk-img" />
       </ion-item>
-  
 
       <ion-card-header>
-        <ion-card-title
-          class="produk-title"
-          >{{barang.nama}}</ion-card-title
-        >
-        <ion-card-subtitle
-          class="produk-subtitle"
-          >Rp {{barang.hargaJual}}</ion-card-subtitle
-        >
+        <ion-card-title class="produk-title">{{barang.nama}}</ion-card-title>
+        <ion-card-subtitle class="produk-subtitle">Rp {{barang.hargaJual}}</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
@@ -115,56 +67,27 @@
         <p>Kategori: {{barang.kategori}}</p>
       </ion-card-content>
 
-      <!-- Tombol keranjang ter-disable jika stok = 0 (Property Binding) -->
-      <div
-        *ngIf="jumlahDiKeranjang(barang) === 0"
-        class="add-cart-wrapper"
-      >
-        <ion-button
-          expand="block"
-          color="primary"
-          [disabled]="barang.stok === 0"
-          (click)="tambahKeKeranjang(barang)"
-          class="add-cart-btn"
-        >
+      <div *ngIf="jumlahDiKeranjang(barang) === 0" class="add-cart-wrapper">
+        <ion-button expand="block" color="primary" [disabled]="barang.stok === 0" (click)="tambahKeKeranjang(barang)"
+          class="add-cart-btn">
           <ion-icon slot="start" name="cart-outline"></ion-icon>
           Tambah ke Keranjang
         </ion-button>
       </div>
 
-      <div
-        *ngIf="jumlahDiKeranjang(barang) > 0"
-        class="cart-qty-wrapper"
-      >
-        <ion-button
-          size="small"
-          fill="clear"
-          color="primary"
-          (click)="kurangDariProduk(barang)"
-        >
+      <div *ngIf="jumlahDiKeranjang(barang) > 0" class="cart-qty-wrapper">
+        <ion-button size="small" fill="clear" color="primary" (click)="kurangDariProduk(barang)">
           <ion-icon name="remove-circle-outline" slot="icon-only"></ion-icon>
         </ion-button>
-        <ion-badge color="primary" class="cart-qty-badge"
-          >{{ jumlahDiKeranjang(barang) }} di keranjang</ion-badge
-        >
-        <ion-button
-          size="small"
-          fill="clear"
-          color="primary"
-          [disabled]="barang.stok === 0"
-          (click)="tambahDariProduk(barang)"
-        >
+        <ion-badge color="primary" class="cart-qty-badge">{{ jumlahDiKeranjang(barang) }} di keranjang</ion-badge>
+        <ion-button size="small" fill="clear" color="primary" [disabled]="barang.stok === 0"
+          (click)="tambahDariProduk(barang)">
           <ion-icon name="add-circle-outline" slot="icon-only"></ion-icon>
         </ion-button>
       </div>
 
-      <ion-button
-        type="button"
-        fill="solid"
-        class="ion-margin-horizontal edit-produk-btn"
-        routerLink="/produkform/{{barang.produkId}}"
-        color="secondary"
-      >
+      <ion-button type="button" fill="solid" class="ion-margin-horizontal edit-produk-btn"
+        routerLink="/produkform/{{barang.produkId}}" color="secondary">
         <ion-icon slot="start" name="create-outline"></ion-icon>
         Edit Produk
       </ion-button>
