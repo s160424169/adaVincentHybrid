@@ -9,9 +9,9 @@ Universitas Surabaya.
 
 **Kelompok:** adavincent
 **Anggota:** 
-Gregory Evan Kusuma ~ 160424169 
-Kenzo Dani Gracia ~ 160424154 
-Vincent Kosasih ~ 160424143 
+Gregory Evan Kusuma ~ 160424169\\ 
+Kenzo Dani Gracia ~ 160424154\\ 
+Vincent Kosasih ~ 160424143\\ 
 Rafly Ardiansyah Putra Pratama ~ 160424147
 
 ## Cara Instalasi
