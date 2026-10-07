@@ -1,10 +1,18 @@
-# SIMOBILE — Toko Makmur Jaya
+# SIMOBILE - Toko Makmur Jaya
 
-Aplikasi kasir mobile yang sederhana berbasis Ionic Angular, dibuat sesuai dengan kemauan bu Marni
-mata kuliah Hybrid Mobile Programming Informatics Engineering, Universitas Surabaya.
+**PROJECT UTS**
 
-**Kelompok:** ADAVincent
-**Anggota:** Gregory Evan Kusuma ~ 160424169 , Kenzo Dani Gracia ~ 160424154 , Vincent Kosasih ~ 160424143, Rafly Ardiansyah Putra Pratama ~ 160424147
+Aplikasi kasir mobile yang sederhana berbasis Ionic Angular
+Mata Kuliah: Hybrid Mobile Programming 
+Teknik Informatika 
+Universitas Surabaya.
+
+**Kelompok:** adavincent
+**Anggota:** 
+Gregory Evan Kusuma ~ 160424169 
+Kenzo Dani Gracia ~ 160424154 
+Vincent Kosasih ~ 160424143 
+Rafly Ardiansyah Putra Pratama ~ 160424147
 
 ## Cara Instalasi
 
@@ -14,8 +22,7 @@ mata kuliah Hybrid Mobile Programming Informatics Engineering, Universitas Surab
 
 
 ## Cara Menjalankan Aplikasi
-- lakukan Ionic Serve
-
+- Ketik ionic serve 
 
 Aplikasi akan terbuka otomatis di browser pada `http://localhost:8100`.
 
@@ -36,6 +43,4 @@ Aplikasi akan terbuka otomatis di browser pada `http://localhost:8100`.
 - [x] 10 data dummy produk dengan variasi harga, stok, dan kategori
 
 ## Catatan
-
-Seluruh data (produk, keranjang, transaksi) disimpan di memori aplikasi (service Angular)
-selama aplikasi berjalan, belum menggunakan database eksternal (phpmyadmin).
+Seluruh data (produk, keranjang, transaksi) disimpan di memori aplikasi (service Angular) selama aplikasi berjalan
