@@ -7,8 +7,8 @@ Mata Kuliah: Hybrid Mobile Programming
 Teknik Informatika 
 Universitas Surabaya.
 
-**Kelompok:** adavincent
-**Anggota:** 
+**Kelompok:** adavincent<br>
+**Anggota:**<br>
 Gregory Evan Kusuma ~ 160424169<br>
 Kenzo Dani Gracia ~ 160424154<br>
 Vincent Kosasih ~ 160424143<br>
