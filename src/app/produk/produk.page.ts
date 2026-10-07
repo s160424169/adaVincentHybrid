@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core'; 
 import { ViewWillEnter } from '@ionic/angular';
 import { Produk } from '../services/produk';
 import { Keranjang } from '../services/keranjang';
@@ -20,7 +20,6 @@ export class ProdukPage implements OnInit, ViewWillEnter {
   constructor(
     private produkservice: Produk,
     public keranjangService: Keranjang, // Inject service keranjang
-    private cdr: ChangeDetectorRef // 3. Inject ChangeDetectorRef
   ) { }
   
   ngOnInit() {
@@ -31,7 +30,6 @@ export class ProdukPage implements OnInit, ViewWillEnter {
   ionViewWillEnter() {
     // Memaksa Angular merender ulang UI saat tab ini aktif.
     // Ini akan memicu ulang pembacaan stok terbaru dan fungsi jumlahDiKeranjang()
-    this.cdr.detectChanges();
   }
   
   setKolom(jumlah: number) {

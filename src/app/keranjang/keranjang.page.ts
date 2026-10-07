@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ViewWillEnter } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Keranjang } from '../services/keranjang';
@@ -24,12 +24,11 @@ export class KeranjangPage implements OnInit, ViewWillEnter {
   bumpId: any = null;
 
   constructor(public keranjang: Keranjang, private transaksi: Transaksi, private produk: Produk,
-    private router: Router,
-    private cdr: ChangeDetectorRef) { }
+    private router: Router,) { }
     
   ionViewWillEnter() {
     // Memaksa halaman memperbarui tampilan data keranjang terbaru saat tab dibuka
-    this.cdr.detectChanges();
+
   }
   ngOnInit() {
     // if (this.keranjang.items.length === 0) {
