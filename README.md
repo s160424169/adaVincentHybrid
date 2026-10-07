@@ -9,9 +9,9 @@ Universitas Surabaya.
 
 **Kelompok:** adavincent
 **Anggota:** 
-Gregory Evan Kusuma ~ 160424169\\ 
-Kenzo Dani Gracia ~ 160424154\\ 
-Vincent Kosasih ~ 160424143\\ 
+Gregory Evan Kusuma ~ 160424169<br>
+Kenzo Dani Gracia ~ 160424154<br>
+Vincent Kosasih ~ 160424143<br>
 Rafly Ardiansyah Putra Pratama ~ 160424147
 
 ## Cara Instalasi
@@ -22,7 +22,7 @@ Rafly Ardiansyah Putra Pratama ~ 160424147
 
 
 ## Cara Menjalankan Aplikasi
-- Ketik ionic serve 
+- Ketik 'ionic serve' 
 
 Aplikasi akan terbuka otomatis di browser pada `http://localhost:8100`.
 
