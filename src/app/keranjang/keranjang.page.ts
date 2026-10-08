@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { ViewWillEnter } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Keranjang } from '../services/keranjang';
 import { Transaksi } from '../services/transaksi';

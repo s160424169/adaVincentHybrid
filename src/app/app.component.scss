@@ -60,7 +60,7 @@
   bottom: 0;
   z-index: 10;
   display: flex;
-  background: var(--ion-background-color);
+  background: var(--ion-background-color, #ffffff);
   border-top: 1px solid var(--ion-color-step-150, #d7d8da);
   padding-bottom: env(safe-area-inset-bottom, 0);
 }

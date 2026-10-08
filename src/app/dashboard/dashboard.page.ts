@@ -15,7 +15,7 @@ export class DashboardPage implements OnInit, ViewWillEnter {
 
   ) { }
   ionViewWillEnter() {
-    // Memaksa halaman memperbarui tampilan data keranjang terbaru saat tab dibuka
+    
   }
   ngOnInit() {
   }
