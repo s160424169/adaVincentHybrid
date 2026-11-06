@@ -16,7 +16,7 @@
   </ion-header>
 
   <ion-card *ngIf="produk">
-    <img [alt]="produk.nama" [src]="produk.gambar || 'assets/no_image.png'" />
+    <img [alt]="produk.nama" [src]="produk.foto || 'assets/no_image.png'" />
     <ion-card-header>
       <ion-card-title>{{ produk.nama }}</ion-card-title>
       <ion-card-subtitle>Kategori: {{ produk.kategori }}</ion-card-subtitle>
@@ -28,15 +28,15 @@
       </ion-item>
       <ion-item lines="none">
         <ion-label>Harga Beli</ion-label>
-        <ion-note slot="end">Rp {{ produk.hargaBeli }}</ion-note>
+        <ion-note slot="end">Rp {{ produk.harga_beli }}</ion-note>
       </ion-item>
       <ion-item lines="none">
         <ion-label>Harga Jual</ion-label>
-        <ion-note slot="end">Rp {{ produk.hargaJual }}</ion-note>
+        <ion-note slot="end">Rp {{ produk.harga_jual }}</ion-note>
       </ion-item>
       <ion-item lines="none">
         <ion-label><strong>Untung per item</strong></ion-label>
-        <ion-note slot="end" color="success"><strong>Rp {{ untung }}</strong></ion-note>
+        <ion-note slot="end" color="success"><strong>Rp {{ produk.harga_jual - produk.harga_beli }}</strong></ion-note>
       </ion-item>
     </ion-card-content>
   </ion-card>

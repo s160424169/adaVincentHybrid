@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Produk } from '../services/produk';
 import { Keranjang } from '../services/keranjang';
 
@@ -15,10 +15,15 @@ export class ProdukPage implements OnInit {
   notifikasi: string = '';
   tampilNotif: boolean = false;
 
-  constructor(private produkservice: Produk, public keranjangService: Keranjang,) { }
+  constructor(private produkservice: Produk, public keranjangService: Keranjang, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.items = this.produkservice.items;
+    this.produkservice.produkList().subscribe(
+      (data) => {
+        this.items = data
+        this.cdr.markForCheck()
+      }
+    )
   }
 
   setKolom(jumlah: number) {

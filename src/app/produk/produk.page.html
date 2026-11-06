@@ -52,14 +52,14 @@
       margin: kolom === 1 ? '0 auto 16px auto' : '0 0 16px 0',
       'max-width': kolom === 1 ? '480px' : 'none'
     }" class="produk-card">
-      <ion-item routerLink="/produkdetail/{{barang.produkId}}">
-        <img alt="{{barang.nama}}" [src]="barang.gambar ? barang.gambar : 'assets/icon/favicon.png'"
+      <ion-item routerLink="/produkdetail/{{barang.id}}">
+        <img alt="{{barang.nama}}" [src]="barang.foto ? barang.foto : 'assets/icon/favicon.png'"
           class="produk-img" />
       </ion-item>
 
       <ion-card-header>
         <ion-card-title class="produk-title">{{barang.nama}}</ion-card-title>
-        <ion-card-subtitle class="produk-subtitle">Rp {{barang.hargaJual}}</ion-card-subtitle>
+        <ion-card-subtitle class="produk-subtitle">Rp {{barang.harga_jual}}</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
